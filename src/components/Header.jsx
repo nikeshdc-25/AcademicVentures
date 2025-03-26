@@ -21,7 +21,6 @@ import logo from "../assets/academicV.png";
 import "./headerNav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-
 const HeaderNav = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorE2, setAnchorE2] = useState(null);
@@ -87,14 +86,14 @@ const HeaderNav = () => {
           {!isMobile ? (
             <Stack
               direction="row"
-              spacing={3}
+              spacing={2}
               alignItems="center"
-              justifyContent="center"
+              justifyContent="end"
               sx={{ flex: 1 }}
             >
               {/* Non-mobile navigation buttons */}
               <Button
-                sx={{ color: "black" }}
+                sx={{ color: "black", fontSize: 15 }}
                 className="nav-button"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -102,7 +101,7 @@ const HeaderNav = () => {
                 Home
               </Button>
               <Button
-                sx={{ color: "black" }}
+                sx={{ color: "black", fontSize: 15 }}
                 className="nav-button"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -110,7 +109,7 @@ const HeaderNav = () => {
                 About Us
               </Button>
               <Button
-                sx={{ color: "black" }}
+                sx={{ color: "black", fontSize: 15 }}
                 className="nav-button"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -124,9 +123,12 @@ const HeaderNav = () => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <Button className="nav-button" sx={{ color: "black" }}>
+                <Button
+                  className="nav-button"
+                  sx={{ color: "black", fontSize: 15 }}
+                >
                   Destination
-                  <KeyboardArrowDownIcon sx={{ width: 15.4, height: 14 }} />
+                  <KeyboardArrowDownIcon  sx={{ width: 16, height: 14, font: 20 }} />
                 </Button>
                 <div className={`dropdown-menu ${anchorEl ? "show" : ""}`}>
                   <MenuList>
@@ -140,7 +142,7 @@ const HeaderNav = () => {
               </Box>
 
               <Button
-                sx={{ color: "black" }}
+                sx={{ color: "black", fontSize: 15 }}
                 className="nav-button"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -154,7 +156,10 @@ const HeaderNav = () => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <Button className="nav-button" sx={{ color: "black" }}>
+                <Button
+                  className="nav-button"
+                  sx={{ color: "black", fontSize: 15 }}
+                >
                   Test Preparation
                   <KeyboardArrowDownIcon sx={{ width: 15.4, height: 14 }} />
                 </Button>
@@ -185,54 +190,53 @@ const HeaderNav = () => {
 
           {/* CTA Button */}
           <Button
-  component="a"
-  href="https://osom.one/contact"
-  target="_blank"
-  rel="noopener noreferrer"
-  variant="contained"
-  color="primary"
-  sx={{
-    backgroundColor: "#007acc",
-    borderRadius: 28,
-    textTransform: "none",
-    padding: "10px 16px",
-    display: "flex",
-    alignItems: "center",
-    gap: 1,
-    width: "auto", // Ensures the button can adjust size
-    whiteSpace: "normal", // Allows text wrapping
-    overflow: "hidden", // Hides overflowing text
-    textOverflow: "ellipsis", // Adds the ellipsis when the text overflows
-  }}
-  endIcon={
-    <IconButton
-      size="small"
-      sx={{
-        bgcolor: "white",
-        width: 40,
-        height: 40,
-        "&:hover": {
-          bgcolor: "white",
-        },
-      }}
-    >
-      <PhoneIcon sx={{ color: "#007acc", width: 13.5, height: 19 }} />
-    </IconButton>
-  }
->
-  <Typography
-    sx={{
-      display: "inline-block",
-      maxWidth: "180px",
-      overflow: "hidden",
-      whiteSpace: "nowrap",
-      textOverflow: "ellipsis",
-    }}
-  >
-    Book Free Counseling
-  </Typography>
-</Button>
-
+            component="a"
+            href="https://osom.one/contact"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="contained"
+            color="primary"
+            sx={{
+              backgroundColor: "#007acc",
+              borderRadius: 28,
+              textTransform: "none",
+              padding: "10px 16px",
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              width: "auto",
+              whiteSpace: "normal", 
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+            endIcon={
+              <IconButton
+                size="small"
+                sx={{
+                  bgcolor: "white",
+                  width: 40,
+                  height: 40,
+                  "&:hover": {
+                    bgcolor: "white",
+                  },
+                }}
+              >
+                <PhoneIcon sx={{ color: "#007acc", width: 13.5, height: 19 }} />
+              </IconButton>
+            }
+          >
+            <Typography
+              sx={{
+                display: "inline-block",
+                maxWidth: "180px",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              Book Free Counseling
+            </Typography>
+          </Button>
         </Toolbar>
       </Container>
 

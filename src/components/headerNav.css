@@ -1,10 +1,6 @@
-/* headerNav.css */
 
 /* Button styles */
 .nav-button {
-    font-weight: 600;
-    font-size: 1.8rem;
-    letter-spacing: 0.1em;
     transition: color 0.3s ease, transform 0.3s ease;
     display: flex;
     align-items: center;
