@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PhoneIcon from "@mui/icons-material/Phone";
 import {
@@ -6,147 +7,252 @@ import {
   Button,
   Container,
   IconButton,
-  Link,
   Stack,
   Toolbar,
   Typography,
+  MenuList,
+  MenuItem,
+  Drawer,
+  List,
+  ListItem,
+  useMediaQuery,
 } from "@mui/material";
-import React from "react";
+import logo from "../assets/academicV.png";
+import "./headerNav.css";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-const Header = () => {
-  // Navigation links data
-  const navLinks = [
-    { title: "HOME", href: "https://osom.one/" },
-    { title: "ABOUT US", href: "https://osom.one/about-us" },
-    { title: "STUDY ABROAD", href: "https://osom.one/student-success-stories" },
-    { title: "GALLERY", href: "https://osom.one/gallery" },
-  ];
 
-  // Dropdown menus data
-  const dropdownMenus = [{ title: "SERVICES" }, { title: "TEST PREPARATION" }];
+const HeaderNav = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorE2, setAnchorE2] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Responsive breakpoints
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  // Handle hover events to show and hide the dropdown
+  const handleMouseEnter = (event) => {
+    if (event.target.innerText === "DESTINATION") {
+      setAnchorEl(event.currentTarget);
+    }
+    if (event.target.innerText === "TEST PREPARATION") {
+      setAnchorE2(event.currentTarget);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setAnchorEl(null);
+    setAnchorE2(null);
+  };
+
+  // Toggle Drawer on mobile
+  const toggleDrawer = (open) => {
+    setDrawerOpen(open);
+  };
 
   return (
     <AppBar
       position="static"
       color="transparent"
       elevation={0}
-      sx={{ height: 60 }}
+      sx={{ height: 70, margin: 2 }}
     >
       <Container maxWidth={false}>
         <Toolbar
           disableGutters
           sx={{ height: 60, justifyContent: "space-between" }}
         >
-          {/* Company Logo/Name */}
-          <Link
-            href="https://osom.one/"
-            target="_blank"
-            rel="noopener noreferrer"
-            underline="none"
-            sx={{
-              color: "#007acc",
-              fontWeight: 400,
-              fontSize: "1rem",
-              lineHeight: 1.5,
-              height: 36,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            Academic Ventures
-          </Link>
+          {/* Company Logo and Name */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: 85, height: 80, marginRight: 8 }}
+            />
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#007acc",
+                fontWeight: 600,
+                fontSize: "2rem",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              Academic Ventures
+            </Typography>
+          </Box>
 
           {/* Navigation Links */}
-          <Stack
-            direction="row"
-            spacing={3}
-            alignItems="center"
-            justifyContent="center"
-            sx={{ flex: 1 }}
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                underline="none"
-                sx={{
-                  color: "#333333",
-                  fontWeight: 500,
-                  fontSize: "0.875rem",
-                  letterSpacing: "0.02em",
-                  whiteSpace: "nowrap",
-                }}
+          {!isMobile ? (
+            <Stack
+              direction="row"
+              spacing={3}
+              alignItems="center"
+              justifyContent="center"
+              sx={{ flex: 1 }}
+            >
+              {/* Non-mobile navigation buttons */}
+              <Button
+                sx={{ color: "black" }}
+                className="nav-button"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
-                {link.title}
-              </Link>
-            ))}
+                Home
+              </Button>
+              <Button
+                sx={{ color: "black" }}
+                className="nav-button"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                About Us
+              </Button>
+              <Button
+                sx={{ color: "black" }}
+                className="nav-button"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                Study Abroad
+              </Button>
 
-            {dropdownMenus.map((menu) => (
+              {/* Dropdown for "Destination" */}
               <Box
-                key={menu.title}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  cursor: "pointer",
-                }}
+                className="dropdown-container"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
-                <Typography
-                  sx={{
-                    color: "#333333",
-                    fontWeight: 500,
-                    fontSize: "0.875rem",
-                    letterSpacing: "0.02em",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {menu.title}
-                </Typography>
-                <KeyboardArrowDownIcon sx={{ width: 15.4, height: 14 }} />
+                <Button className="nav-button" sx={{ color: "black" }}>
+                  Destination
+                  <KeyboardArrowDownIcon sx={{ width: 15.4, height: 14 }} />
+                </Button>
+                <div className={`dropdown-menu ${anchorEl ? "show" : ""}`}>
+                  <MenuList>
+                    <MenuItem className="dropdown-item">UK</MenuItem>
+                    <MenuItem className="dropdown-item">USA</MenuItem>
+                    <MenuItem className="dropdown-item">Malaysia</MenuItem>
+                    <MenuItem className="dropdown-item">Romania</MenuItem>
+                    <MenuItem className="dropdown-item">Malta</MenuItem>
+                  </MenuList>
+                </div>
               </Box>
-            ))}
-          </Stack>
+
+              <Button
+                sx={{ color: "black" }}
+                className="nav-button"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                Services
+              </Button>
+
+              {/* Dropdown for "Test Preparation" */}
+              <Box
+                className="dropdown-container"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <Button className="nav-button" sx={{ color: "black" }}>
+                  Test Preparation
+                  <KeyboardArrowDownIcon sx={{ width: 15.4, height: 14 }} />
+                </Button>
+                <div className={`dropdown-menu ${anchorE2 ? "show" : ""}`}>
+                  <MenuList>
+                    <MenuItem className="dropdown-item">SAT</MenuItem>
+                    <MenuItem className="dropdown-item">IELTS</MenuItem>
+                    <MenuItem className="dropdown-item">GRE/GMAT</MenuItem>
+                    <MenuItem className="dropdown-item">TOEFL/PTE</MenuItem>
+                  </MenuList>
+                </div>
+              </Box>
+            </Stack>
+          ) : (
+            // Mobile Drawer Menu
+            <IconButton
+              color="inherit"
+              onClick={() => toggleDrawer(true)}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <GiHamburgerMenu />
+            </IconButton>
+          )}
 
           {/* CTA Button */}
           <Button
-            component={Link}
-            href="https://osom.one/contact"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="contained"
-            color="primary"
-            sx={{
-              backgroundColor: "#007acc",
-              borderRadius: 28,
-              textTransform: "none",
-              padding: "10px 16px",
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-            }}
-            endIcon={
-              <IconButton
-                size="small"
-                sx={{
-                  bgcolor: "white",
-                  width: 40,
-                  height: 40,
-                  "&:hover": {
-                    bgcolor: "white",
-                  },
-                }}
-              >
-                <PhoneIcon sx={{ color: "#007acc", width: 13.5, height: 19 }} />
-              </IconButton>
-            }
-          >
-            Book Free Counseling
-          </Button>
+  component="a"
+  href="https://osom.one/contact"
+  target="_blank"
+  rel="noopener noreferrer"
+  variant="contained"
+  color="primary"
+  sx={{
+    backgroundColor: "#007acc",
+    borderRadius: 28,
+    textTransform: "none",
+    padding: "10px 16px",
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+    width: "auto", // Ensures the button can adjust size
+    whiteSpace: "normal", // Allows text wrapping
+    overflow: "hidden", // Hides overflowing text
+    textOverflow: "ellipsis", // Adds the ellipsis when the text overflows
+  }}
+  endIcon={
+    <IconButton
+      size="small"
+      sx={{
+        bgcolor: "white",
+        width: 40,
+        height: 40,
+        "&:hover": {
+          bgcolor: "white",
+        },
+      }}
+    >
+      <PhoneIcon sx={{ color: "#007acc", width: 13.5, height: 19 }} />
+    </IconButton>
+  }
+>
+  <Typography
+    sx={{
+      display: "inline-block",
+      maxWidth: "180px",
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
+    }}
+  >
+    Book Free Counseling
+  </Typography>
+</Button>
+
         </Toolbar>
       </Container>
+
+      {/* Drawer for mobile menu */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => toggleDrawer(false)}
+      >
+        <List>
+          <ListItem button>Home</ListItem>
+          <ListItem button>About Us</ListItem>
+          <ListItem button>Study Abroad</ListItem>
+          <ListItem button>Destination</ListItem>
+          <ListItem button>Services</ListItem>
+          <ListItem button>Test Preparation</ListItem>
+        </List>
+      </Drawer>
     </AppBar>
   );
 };
 
-export default Header;
+export default HeaderNav;

@@ -1,0 +1,6 @@
+#root{
+  width: fit-content;
+}
+.body {
+  overflow-x: hidden;
+}
