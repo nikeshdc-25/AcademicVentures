@@ -342,6 +342,7 @@ const RightColumn = styled.div`
 
 const CarouselContainer = styled.div`
   position: relative;
+  transition: 2000ms;
 `;
 
 const CardGrid = styled.div`
