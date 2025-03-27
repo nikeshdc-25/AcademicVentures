@@ -34,7 +34,7 @@ function StudyAbroadHero() {
         </ArrowIconContainer>
       </ScheduleButton>
       <MainImage
-        src="../../public/section1.png"
+        src="../section1.png"
         alt="Study abroad illustration"
       />
       <ServicesCard>
