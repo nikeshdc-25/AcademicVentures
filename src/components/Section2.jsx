@@ -5,6 +5,7 @@ import Section2Card from "./Section2Card";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useEffect } from "react";
 
 // Card data for the carousel
 const cardPairs = [
@@ -81,18 +82,28 @@ const cardPairs = [
 function Section2() {
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
   const totalPairs = cardPairs.length;
+  const [animationDirection, setAnimationDirection] = useState("");
 
   const handlePrevClick = () => {
-    setCurrentPairIndex((prevIndex) =>
-      prevIndex === 0 ? totalPairs - 1 : prevIndex - 1
-    );
+    setAnimationDirection("slide-right");
+    setTimeout(() => {
+      setCurrentPairIndex((prevIndex) =>
+        prevIndex === 0 ? totalPairs - 1 : prevIndex - 1
+      );
+    }, 300);
   };
 
   const handleNextClick = () => {
-    setCurrentPairIndex((prevIndex) =>
-      prevIndex === totalPairs - 1 ? 0 : prevIndex + 1
-    );
+    setAnimationDirection("slide-left");
+    setTimeout(() => {
+      setCurrentPairIndex((prevIndex) =>
+        prevIndex === totalPairs - 1 ? 0 : prevIndex + 1
+      );
+    }, 300);
   };
+  useEffect(() => {
+    setTimeout(() => setAnimationDirection(""), 300);
+  }, [currentPairIndex]);
 
   const currentPair = cardPairs[currentPairIndex];
   const [activeButton, setActiveButton] = React.useState(null);
@@ -102,8 +113,11 @@ function Section2() {
       <ContentWrapper>
         <Section>
           <LeftColumn>
+          <ImageWrapper>
+    <img src="./dot.png" alt="Decorative" />
+  </ImageWrapper>
             <TagBadge>About Us</TagBadge>
-            
+
             <HeadingWrapper>
               <Heading>
                 <HeadingText>Unleash Your Potential with</HeadingText>
@@ -129,44 +143,23 @@ function Section2() {
           </LeftColumn>
           <RightColumn>
             <CarouselContainer>
-              <CardGrid>
-                {/* University Card */}
-                <Section2Card
-                  key={`university-${currentPair.university.id}`}
-                  imageUrl={currentPair.university.imageUrl}
-                  imageHeight={currentPair.university.imageHeight}
-                  badgeText={currentPair.university.badgeText}
-                  title={currentPair.university.title}
-                  description={currentPair.university.description}
-                />
-
-                {/* Testimonial Card */}
-                <TestimonialCardWrapper>
-                  <Section2Card
-                    key={`testimonial-${currentPair.testimonial.id}`}
-                    imageUrl={currentPair.testimonial.imageUrl}
-                    imageHeight={currentPair.testimonial.imageHeight}
-                    badgeText={currentPair.testimonial.badgeText}
-                    title={currentPair.testimonial.title}
-                    description={currentPair.testimonial.description}
-                    overlayPosition="top"
-                    overlayTop="246px"
-                  />
-                  <AdditionalContent>
-                    <AdditionalText>
-                      {currentPair.testimonial.additionalText}
-                    </AdditionalText>
-
-                    {currentPair.testimonial.student && (
-                      <StudentInfo>
-                        <strong>{currentPair.testimonial.student}</strong>
-                        {currentPair.testimonial.university &&
-                          ` - ${currentPair.testimonial.university}`}
-                      </StudentInfo>
-                    )}
-                  </AdditionalContent>
-                </TestimonialCardWrapper>
-              </CardGrid>
+              <AnimatedCarousel className={animationDirection}>
+                <CardGrid>
+                  <Section2Card {...currentPair.university} />
+                  <TestimonialCardWrapper>
+                    <Section2Card
+                      {...currentPair.testimonial}
+                      overlayPosition="top"
+                      overlayTop="246px"
+                    />
+                    <AdditionalContent>
+                      <AdditionalText>
+                        {currentPair.testimonial.additionalText}
+                      </AdditionalText>
+                    </AdditionalContent>
+                  </TestimonialCardWrapper>
+                </CardGrid>
+              </AnimatedCarousel>
 
               <NavigationControls>
                 <ButtonGroup>
@@ -224,7 +217,7 @@ const Container = styled.section`
   min-height: screen;
   background-color: #ffffff;
   font-family: Open Sans;
-  padding: 40px;
+  padding: 30px;
   @media (max-width: 991px) {
     padding: 30px;
   }
@@ -237,6 +230,19 @@ const ContentWrapper = styled.div`
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const AnimatedCarousel = styled.div`
+  display: flex;
+  transition: transform 1s ease-out;
+
+  &.slide-left {
+    transform: translateX(-30%);
+  }
+
+  &.slide-right {
+    transform: translateX(30%);
+  }
 `;
 
 const Section = styled.div`
@@ -254,12 +260,44 @@ const Section = styled.div`
 const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 485px;
+  width: 475px;
   @media (max-width: 991px) {
     width: 100%;
   }
 `;
 
+const ImageWrapper = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 150%;
+  width: 80px; 
+  height: auto;
+
+  img {
+    width: 80%;
+    height: auto;
+  }
+
+  @media (max-width: 1024px) {
+    left: 5px;
+    width: 50px;
+    img {
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    left: 0;
+    width: 40px;
+    img {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    display: none; /* Hide image on very small screens */
+  }
+`;
 
 
 const TagBadge = styled.div`
@@ -341,8 +379,9 @@ const RightColumn = styled.div`
 `;
 
 const CarouselContainer = styled.div`
+  width: 100%;
+  overflow: hidden;
   position: relative;
-  transition: 2000ms;
 `;
 
 const CardGrid = styled.div`

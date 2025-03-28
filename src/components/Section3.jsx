@@ -30,7 +30,6 @@ function Section3() {
         "Discover opportunities with our services, including expert visa assistance and test prep for PTE, GRE, IELTS, SAT, and more. Our resources are designed to unlock your potential and lead you to success in your international education.",
     },
   ]);
-  
 
   const serviceCategories = [
     "Visa Assistance",
@@ -150,6 +149,9 @@ function Section3() {
           </BlueCard>
 
           <InfoSection>
+            <TopRightImage>
+              <img src="./circle.png" alt="Decorative" />
+            </TopRightImage>
             <InfoHeading>
               <HeadingRegular>
                 Transform Your Aspirations into Achievements with
@@ -168,7 +170,7 @@ function Section3() {
 
               <InfoText>
                 <LogoIcon>
-                  <AutoAwesomeIcon sx={{fontSize: 40}}/>
+                  <AutoAwesomeIcon sx={{ fontSize: 40 }} />
                 </LogoIcon>
                 Our commitment to quality and detailed guidance empowers you to
                 navigate your education abroad successfully. Let us help turn
@@ -183,16 +185,39 @@ function Section3() {
 }
 
 // Styled Components
+const TopRightImage = styled.div`
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 18%;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 1024px) {
+    top: -10px;
+    right: -10px;
+    width: 90px;
+  }
+
+  @media (max-width: 768px) {
+    top: -5px;
+    right: -5px;
+    width: 80px;
+  }
+
+`;
+
 const SectionWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 3rem;
   background-color: #ffffff;
-  margin-top: 20px;
-  border-top: 3px solid rgb(183, 183, 183);
-  border-radius: 10%;
-    border-bottom: 3px solid rgb(183, 183, 183);
 `;
 
 const ContentContainer = styled.div`
@@ -228,7 +253,7 @@ const CategoryButton = styled.button`
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: hsla(8, 98.20%, 44.10%, 0.10);
+    background-color: hsla(8, 98.2%, 44.1%, 0.1);
   }
 
   &:focus {
@@ -273,7 +298,7 @@ const CardContentGrid = styled.div`
 
 const CarouselImageWrapper = styled.div`
   position: relative;
-  width: 100%; 
+  width: 100%;
   max-width: 800px; /* Adjust as needed */
   height: 500px; /* Set a fixed height */
   overflow: hidden;
