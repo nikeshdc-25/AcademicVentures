@@ -21,7 +21,6 @@ function StatSection() {
               height="100%"
               src="https://www.youtube.com/embed/89dGC8de0CA"
               title="Aerosmith - Dream On (Audio)"
-              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
