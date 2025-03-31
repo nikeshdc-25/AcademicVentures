@@ -7,6 +7,7 @@ import Section3 from "./components/Section3";
 import ServiceSection from "./components/ServicesSection";
 import UniversityPartners from "./components/UniversityPartners";
 import StatSection from "./components/StatSection";
+import FAQSection from "./components/FAQSection";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <ServiceSection />
       <StatSection />
       <UniversityPartners />
+      <FAQSection />
       <Footer />
     </>
   );
