@@ -51,22 +51,32 @@ const HeaderNav = () => {
 
   return (
     <AppBar
-      position="static"
-      color="transparent"
-      elevation={0}
-      sx={{ height: 70, margin: 2 }}
-    >
-      <Container maxWidth={false}>
+    position="sticky"
+    color="transparent"
+    elevation={5}
+    sx={{
+      height: 70,
+      width: "100%",
+      marginTop: 1, // Add margin-top
+      marginBottom: 2, // Add margin-bottom
+      top: 0,
+      borderRadius: 8,
+      background: "linear-gradient(to top,rgb(255, 255, 255),rgb(229, 237, 255))", // Gradient background
+
+      zIndex: 1100,
+    }}
+  >
+      <Container maxWidth={true}>
         <Toolbar
           disableGutters
-          sx={{ height: 60, justifyContent: "space-between" }}
+          sx={{ height: 70, justifyContent: "space-between" }}
         >
           {/* Company Logo and Name */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <img
               src={logo}
               alt="Logo"
-              style={{ width: 85, height: 80, marginRight: 8 }}
+              style={{ width: 75, height: 65, marginRight: 8, padding: 8 }}
             />
             <Typography
               variant="h6"
@@ -128,7 +138,7 @@ const HeaderNav = () => {
                   sx={{ color: "black", fontSize: 15 }}
                 >
                   Destination
-                  <KeyboardArrowDownIcon  sx={{ width: 16, height: 14, font: 20 }} />
+                  <KeyboardArrowDownIcon sx={{ width: 16, height: 14, font: 20 }} />
                 </Button>
                 <div className={`dropdown-menu ${anchorEl ? "show" : ""}`}>
                   <MenuList>
