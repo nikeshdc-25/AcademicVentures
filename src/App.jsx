@@ -8,6 +8,7 @@ import ServiceSection from "./components/ServicesSection";
 import UniversityPartners from "./components/UniversityPartners";
 import StatSection from "./components/StatSection";
 import FAQSection from "./components/FAQSection";
+import Testimonials from "./components/Testimonials";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <ServiceSection />
       <StatSection />
       <UniversityPartners />
+      <Testimonials />
       <FAQSection />
       <Footer />
     </>

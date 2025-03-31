@@ -17,7 +17,7 @@ import {
   ListItem,
   useMediaQuery,
 } from "@mui/material";
-import logo from "../assets/academicV.png";
+import logo from "/academicV.png";
 import "./headerNav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 

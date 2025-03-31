@@ -58,7 +58,7 @@ const Heading = styled.h2`
   }
 `;
 
-const LogosContainer = styled.div`
+const UniversitiesContainer = styled.div`
   width: 100%;
   overflow: hidden;
   border-top: 10px solid rgba(0, 122, 204, 1);
@@ -66,13 +66,13 @@ const LogosContainer = styled.div`
   border-radius: 10%;
 `;
 
-const LogosRows = styled.div`
+const UniversitiesRows = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
 `;
 
-const LogosRow = styled.div`
+const UniversitiesRow = styled.div`
   display: flex;
   animation: scrollLeftToRight 30s linear infinite;
   gap: 80px;
@@ -90,27 +90,27 @@ const GlobalStyles = styled.div`
 `;
 
 function UniversityPartners() {
-  const firstRowLogos = [
-    { id: 1, src: "/images/logos/uni1.jpg", alt: "Harvard University" },
-    { id: 2, src: "/images/logos/uni2.jpg", alt: "Stanford University" },
-    { id: 3, src: "/images/logos/uni3.jpg", alt: "MIT" },
-    { id: 4, src: "/images/logos/uni4.jpg", alt: "MIT" },
-    { id: 5, src: "/images/logos/uni5.jpg", alt: "MIT" },
-    { id: 6, src: "/images/logos/uni6.jpg", alt: "MIT" },
-    { id: 7, src: "/images/logos/uni7.jpg", alt: "MIT" },
-    { id: 8, src: "/images/logos/uni8.jpg", alt: "MIT" },
-    { id: 9, src: "/images/logos/uni9.jpg", alt: "Harvard University" },
-    { id: 10, src: "/images/logos/uni10.jpg", alt: "Harvard University" },
-    { id: 11, src: "/images/logos/uni11.jpg", alt: "Harvard University" },
-    { id: 12, src: "/images/logos/uni12.jpg", alt: "Harvard University" },
-    { id: 13, src: "/images/logos/uni13.jpg", alt: "Harvard University" },
-    { id: 14, src: "/images/logos/uni14.jpg", alt: "Harvard University" },
-    { id: 15, src: "/images/logos/uni15.jpg", alt: "Harvard University" },
-    { id: 16, src: "/images/logos/uni16.jpg", alt: "Harvard University" },
+  const firstRowUniversities = [
+    { id: 1, src: "/images/Universities/uni1.jpg", alt: "Harvard University" },
+    { id: 2, src: "/images/Universities/uni2.jpg", alt: "Stanford University" },
+    { id: 3, src: "/images/Universities/uni3.jpg", alt: "MIT" },
+    { id: 4, src: "/images/Universities/uni4.jpg", alt: "MIT" },
+    { id: 5, src: "/images/Universities/uni5.jpg", alt: "MIT" },
+    { id: 6, src: "/images/Universities/uni6.jpg", alt: "MIT" },
+    { id: 7, src: "/images/Universities/uni7.jpg", alt: "MIT" },
+    { id: 8, src: "/images/Universities/uni8.jpg", alt: "MIT" },
+    { id: 9, src: "/images/Universities/uni9.jpg", alt: "Harvard University" },
+    { id: 10, src: "/images/Universities/uni10.jpg", alt: "Harvard University" },
+    { id: 11, src: "/images/Universities/uni11.jpg", alt: "Harvard University" },
+    { id: 12, src: "/images/Universities/uni12.jpg", alt: "Harvard University" },
+    { id: 13, src: "/images/Universities/uni13.jpg", alt: "Harvard University" },
+    { id: 14, src: "/images/Universities/uni14.jpg", alt: "Harvard University" },
+    { id: 15, src: "/images/Universities/uni15.jpg", alt: "Harvard University" },
+    { id: 16, src: "/images/Universities/uni16.jpg", alt: "Harvard University" },
   ];
 
-  // Duplicate logos to create continuous scrolling effect
-  const duplicatedLogos = [...firstRowLogos, ...firstRowLogos];
+  // Duplicate Universities to create continuous scrolling effect
+  const duplicatedUniversities = [...firstRowUniversities, ...firstRowUniversities];
 
   return (
     <>
@@ -122,19 +122,19 @@ function UniversityPartners() {
       <Container>
         <ContentWrapper>
           <Heading>Our University Partners</Heading>
-          <LogosContainer>
-            <LogosRows>
-              <LogosRow>
-                {duplicatedLogos.map((logo) => (
+          <UniversitiesContainer>
+            <UniversitiesRows>
+              <UniversitiesRow>
+                {duplicatedUniversities.map((logo) => (
                   <UniversityLogo
                     key={logo.id}
                     src={logo.src}
                     altText={logo.alt}
                   />
                 ))}
-              </LogosRow>
-            </LogosRows>
-          </LogosContainer>
+              </UniversitiesRow>
+            </UniversitiesRows>
+          </UniversitiesContainer>
         </ContentWrapper>
       </Container>
     </>
