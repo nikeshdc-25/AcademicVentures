@@ -11,6 +11,7 @@ import App from "./App";
 import Homepage from "./Pages/HomePage";
 import ContactPage from "./Pages/ContactPage";
 import AboutUsPage from "./Pages/AboutUsPage";
+import ServicePage from "./Pages/ServicePage";
 
 const theme = createTheme({
   palette: {
@@ -30,6 +31,8 @@ const router = createBrowserRouter(
 
       <Route path="contact" element={<ContactPage />} />
       <Route path="aboutus" element={<AboutUsPage />} />
+      <Route path="/services" element={<ServicePage />} />
+      <Route path="/services/:serviceId" element={<ServicePage />} />
     </Route>
   )
 );

@@ -11,43 +11,49 @@ const ServicesSection = () => {
   const serviceCards = [
     {
       id: 1,
-      title: "Partner Universities",
-      image: "./services/studyabroad.png",
+      title: "Visa Assistance",
+      image: "./services/visa.jpg",
+      path: "/services/visa-assistance",
     },
     {
       id: 2,
-      title: "Student Testimonials",
-      image: "./services/testimony.png",
+      title: "Language Programs",
+      image: "./services/languageprogram.jpg",
     },
     {
       id: 3,
-      title: "Success Stories",
-      image: "./services/success.png",
+      title: "Partner Universities",
+      image: "./services/partneruni.jpg",
     },
     {
       id: 4,
       title: "Test Preparation Courses",
-      image: "./services/test.png",
+      image: "./services/test.jpg",
     },
     {
       id: 5,
-      title: "Study Abroad Programs",
-      image: "./section1.png",
+      title: "University Selection Assistance",
+      image: "./services/universityselection.jpg",
     },
     {
       id: 6,
-      title: "Career Counseling",
-      image: "./services/career.png",
+      title: "Study Abroad Services",
+      image: "./services/studyabroad.jpg",
     },
     {
       id: 7,
-      title: "Visa Assistance",
-      image: "./services/visa.jpg",
+      title: "Pre-Departure Support",
+      image: "./services/predeparture.jpg",
     },
     {
       id: 8,
-      title: "Language Programs",
-      image: "./services/language.png",
+      title: "Scholarship & Financial Aid",
+      image: "./services/finance.jpg",
+    },
+    {
+      id: 9,
+      title: "Career Counselling",
+      image: "./services/career.jpg",
     },
   ];
 
