@@ -26,8 +26,9 @@ import {
 } from "@mui/icons-material";
 import logo from "/academicV.png";
 import { keyframes } from "@emotion/react";
+import BookCounselling from "./BookCounselling";
 
-// Country flags (you can replace with actual flag images)
+// Country flags
 const countryFlags = {
   UK: "🇬🇧",
   USA: "🇺🇸",
@@ -43,13 +44,14 @@ const fadeIn = keyframes`
 `;
 
 const HeaderNav = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [destinationAnchor, setDestinationAnchor] = useState(null);
   const [testPrepAnchor, setTestPrepAnchor] = useState(null);
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
   const [hoveredCountry, setHoveredCountry] = useState("");
-
 
   const handleDestinationOpen = (event) => {
     setDestinationAnchor(event.currentTarget);
@@ -94,6 +96,7 @@ const HeaderNav = () => {
         { name: "TOEFL", path: "/test-prep/toefl" },
       ],
     },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -168,7 +171,6 @@ const HeaderNav = () => {
           </Box>
 
           {/* Desktop Navigation */}
-          {/* Desktop Navigation */}
           {!isMobile ? (
             <Stack
               direction="row"
@@ -213,18 +215,36 @@ const HeaderNav = () => {
                           fontWeight: 500,
                           height: "100%",
                           px: 2,
+                          position: "relative",
                           "&:hover": {
                             color: theme.palette.primary.main,
                             backgroundColor: "transparent",
                             "& .MuiSvgIcon-root": {
                               transform: "rotate(180deg)",
                             },
+                            "&::after": {
+                              width: "100%",
+                            },
                           },
                           "&.active": {
                             color: theme.palette.primary.main,
                             fontWeight: 600,
+                            "&::after": {
+                              width: "100%",
+                            },
                           },
                           transition: "all 0.2s ease",
+                          "&::after": {
+                            content: '""',
+                            position: "absolute",
+                            bottom: 0,
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            width: 0,
+                            height: 3,
+                            backgroundColor: theme.palette.primary.main,
+                            transition: "width 0.3s ease",
+                          },
                         }}
                       >
                         {item.name}
@@ -329,11 +349,21 @@ const HeaderNav = () => {
                                   color: theme.palette.text.secondary,
                                 }}
                               >
-                                {hoveredCountry && (
+                                {hoveredCountry ? (
                                   <img
                                     src={`/images/country/${hoveredCountry.toLowerCase()}.png`}
                                     alt={`${hoveredCountry} Flag`}
                                     style={{ width: "200px", height: "auto" }}
+                                  />
+                                ) : (
+                                  <img
+                                    src="/images/country/global.png"
+                                    alt="Global Map"
+                                    style={{
+                                      width: "200px",
+                                      height: "auto",
+                                      opacity: 0.8,
+                                    }}
                                   />
                                 )}
                               </Box>
@@ -372,9 +402,31 @@ const HeaderNav = () => {
                         fontWeight: 500,
                         height: "100%",
                         px: 2,
+                        position: "relative",
                         "&:hover": {
                           color: theme.palette.primary.main,
                           backgroundColor: "transparent",
+                          "&::after": {
+                            width: "100%",
+                          },
+                        },
+                        "&.active": {
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          "&::after": {
+                            width: "100%",
+                          },
+                        },
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          bottom: 0,
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                          width: 0,
+                          height: 3,
+                          backgroundColor: theme.palette.primary.main,
+                          transition: "width 0.3s ease",
                         },
                       }}
                     >
@@ -542,13 +594,10 @@ const HeaderNav = () => {
 
           {/* CTA Button */}
           <Button
-            component="a"
-            href="https://osom.one/contact"
-            target="_blank"
-            rel="noopener noreferrer"
             variant="contained"
             color="primary"
             startIcon={<Phone sx={{ fontSize: 18 }} />}
+            onClick={() => setIsModalOpen(true)}
             sx={{
               ml: { xs: 1, md: 3 },
               borderRadius: 28,
@@ -566,6 +615,10 @@ const HeaderNav = () => {
           >
             Book Free Counseling
           </Button>
+          <BookCounselling
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </Toolbar>
       </Container>
     </AppBar>
