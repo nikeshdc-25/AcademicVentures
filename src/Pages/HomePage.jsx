@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/system";
 import Section1 from "../components/Section1";
 import Section2 from "../components/Section2";
@@ -16,6 +16,10 @@ const HomepageContainer = styled("div")({
 });
 
 const Homepage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <HomepageContainer>
       <Section1 />

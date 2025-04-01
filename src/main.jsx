@@ -10,6 +10,7 @@ import {
 import App from "./App";
 import Homepage from "./Pages/HomePage";
 import ContactPage from "./Pages/ContactPage";
+import AboutUsPage from "./Pages/AboutUsPage";
 
 const theme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ const router = createBrowserRouter(
       <Route path="" element={<Homepage />} />
 
       <Route path="contact" element={<ContactPage />} />
-      {/* <Route path="aboutus" element={<AboutUs />} /> */}
+      <Route path="aboutus" element={<AboutUsPage />} />
     </Route>
   )
 );
