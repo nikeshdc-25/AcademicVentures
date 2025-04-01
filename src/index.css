@@ -1,8 +1,11 @@
 #root{
   width: fit-content;
 }
-.body {
+body {
   overflow-x: hidden;
   font-family: 'Open Sans', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}

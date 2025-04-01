@@ -118,14 +118,6 @@ const HeaderNav = () => {
               >
                 About Us
               </Button>
-              <Button
-                sx={{ color: "black", fontSize: 15 }}
-                className="nav-button"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                Study Abroad
-              </Button>
 
               {/* Dropdown for "Destination" */}
               <Box
@@ -259,7 +251,6 @@ const HeaderNav = () => {
         <List>
           <ListItem button>Home</ListItem>
           <ListItem button>About Us</ListItem>
-          <ListItem button>Study Abroad</ListItem>
           <ListItem button>Destination</ListItem>
           <ListItem button>Services</ListItem>
           <ListItem button>Test Preparation</ListItem>

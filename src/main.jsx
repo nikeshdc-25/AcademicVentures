@@ -1,9 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom/client"; // Use the correct import for React 18
+import ReactDOM from "react-dom/client";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
 import App from "./App";
+import Homepage from "./Pages/HomePage";
+import ContactPage from "./Pages/ContactPage";
 
-// Create a theme using MUI's `createTheme` function
 const theme = createTheme({
   palette: {
     primary: {
@@ -15,11 +22,19 @@ const theme = createTheme({
   },
 });
 
-// Get the root element
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route path="" element={<Homepage />} />
 
-  root.render(
+      <Route path="contact" element={<ContactPage />} />
+      {/* <Route path="aboutus" element={<AboutUs />} /> */}
+    </Route>
+  )
+);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
-    <App />
+    <RouterProvider router={router} />
   </ThemeProvider>
 );
