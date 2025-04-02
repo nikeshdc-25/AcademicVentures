@@ -12,6 +12,11 @@ import Homepage from "./Pages/HomePage";
 import ContactPage from "./Pages/ContactPage";
 import AboutUsPage from "./Pages/AboutUsPage";
 import ServicePage from "./Pages/ServicePage";
+import UKPage from "./Pages/UKPage";
+import MaltaPage from "./Pages/MaltaPage";
+import RomaniaPage from "./Pages/RomaniaPage";
+import USPage from "./Pages/USPage";
+import MalaysiaPage from "./Pages/MalaysiaPage";
 
 const theme = createTheme({
   palette: {
@@ -33,6 +38,11 @@ const router = createBrowserRouter(
       <Route path="aboutus" element={<AboutUsPage />} />
       <Route path="/services" element={<ServicePage />} />
       <Route path="/services/:serviceId" element={<ServicePage />} />
+      <Route path="/uk" element={<UKPage />} />
+      <Route path="/usa" element={<USPage />} />
+      <Route path="/malta" element={<MaltaPage />} />
+      <Route path="/romania" element={<RomaniaPage />} />
+      <Route path="/malaysia" element={<MalaysiaPage />} />
     </Route>
   )
 );

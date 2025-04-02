@@ -91,22 +91,22 @@ const GlobalStyles = styled.div`
 
 function UniversityPartners() {
   const firstRowUniversities = [
-    { id: 1, src: "/images/Universities/uni1.jpg", alt: "Harvard University" },
-    { id: 2, src: "/images/Universities/uni2.jpg", alt: "Stanford University" },
-    { id: 3, src: "/images/Universities/uni3.jpg", alt: "MIT" },
-    { id: 4, src: "/images/Universities/uni4.jpg", alt: "MIT" },
-    { id: 5, src: "/images/Universities/uni5.jpg", alt: "MIT" },
-    { id: 6, src: "/images/Universities/uni6.jpg", alt: "MIT" },
-    { id: 7, src: "/images/Universities/uni7.jpg", alt: "MIT" },
-    { id: 8, src: "/images/Universities/uni8.jpg", alt: "MIT" },
-    { id: 9, src: "/images/Universities/uni9.jpg", alt: "Harvard University" },
-    { id: 10, src: "/images/Universities/uni10.jpg", alt: "Harvard University" },
-    { id: 11, src: "/images/Universities/uni11.jpg", alt: "Harvard University" },
-    { id: 12, src: "/images/Universities/uni12.jpg", alt: "Harvard University" },
-    { id: 13, src: "/images/Universities/uni13.jpg", alt: "Harvard University" },
-    { id: 14, src: "/images/Universities/uni14.jpg", alt: "Harvard University" },
-    { id: 15, src: "/images/Universities/uni15.jpg", alt: "Harvard University" },
-    { id: 16, src: "/images/Universities/uni16.jpg", alt: "Harvard University" },
+    { id: 1, src: "/images/UniversityLogo/uni1.jpg", alt: "Harvard University" },
+    { id: 2, src: "/images/UniversityLogo/uni2.jpg", alt: "Stanford University" },
+    { id: 3, src: "/images/UniversityLogo/uni3.jpg", alt: "MIT" },
+    { id: 4, src: "/images/UniversityLogo/uni4.jpg", alt: "MIT" },
+    { id: 5, src: "/images/UniversityLogo/uni5.jpg", alt: "MIT" },
+    { id: 6, src: "/images/UniversityLogo/uni6.jpg", alt: "MIT" },
+    { id: 7, src: "/images/UniversityLogo/uni7.jpg", alt: "MIT" },
+    { id: 8, src: "/images/UniversityLogo/uni8.jpg", alt: "MIT" },
+    { id: 9, src: "/images/UniversityLogo/uni9.jpg", alt: "Harvard University" },
+    { id: 10, src: "/images/UniversityLogo/uni10.jpg", alt: "Harvard University" },
+    { id: 11, src: "/images/UniversityLogo/uni11.jpg", alt: "Harvard University" },
+    { id: 12, src: "/images/UniversityLogo/uni12.jpg", alt: "Harvard University" },
+    { id: 13, src: "/images/UniversityLogo/uni13.jpg", alt: "Harvard University" },
+    { id: 14, src: "/images/UniversityLogo/uni14.jpg", alt: "Harvard University" },
+    { id: 15, src: "/images/UniversityLogo/uni15.jpg", alt: "Harvard University" },
+    { id: 16, src: "/images/UniversityLogo/uni16.jpg", alt: "Harvard University" },
   ];
 
   // Duplicate Universities to create continuous scrolling effect

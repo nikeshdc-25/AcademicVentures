@@ -244,9 +244,9 @@ const BookCounselling = ({ isOpen, onClose }) => {
                   <MenuItem value="">Select a country</MenuItem>
                   <MenuItem value="USA">United States 🇺🇸</MenuItem>
                   <MenuItem value="UK">United Kingdom 🇬🇧</MenuItem>
-                  <MenuItem value="Canada">Canada 🇨🇦</MenuItem>
-                  <MenuItem value="Australia">Australia 🇦🇺</MenuItem>
-                  <MenuItem value="Germany">Germany 🇩🇪</MenuItem>
+                  <MenuItem value="Canada">Malaysia 🇲🇾</MenuItem>
+                  <MenuItem value="Australia">Romania 🇷🇴</MenuItem>
+                  <MenuItem value="Germany">Malta 🇲🇹</MenuItem>
                   <MenuItem value="Others">Other Countries</MenuItem>
                 </Select>
               </FormControl>

@@ -14,7 +14,6 @@ import {
   useTheme,
   useMediaQuery,
   Grow,
-  Slide,
   Divider,
   Avatar,
 } from "@mui/material";
@@ -77,11 +76,11 @@ const HeaderNav = () => {
     {
       name: "Destination",
       subItems: [
-        { name: "UK", path: "/destination/uk" },
-        { name: "USA", path: "/destination/usa" },
-        { name: "Malaysia", path: "/destination/malaysia" },
-        { name: "Romania", path: "/destination/romania" },
-        { name: "Malta", path: "/destination/malta" },
+        { name: "UK", path: "/uk" },
+        { name: "USA", path: "/usa" },
+        { name: "Malaysia", path: "/malaysia" },
+        { name: "Romania", path: "/romania" },
+        { name: "Malta", path: "/malta" },
       ],
     },
     { name: "Services", path: "/services" },
