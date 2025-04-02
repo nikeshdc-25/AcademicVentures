@@ -269,7 +269,7 @@ const HeaderNav = () => {
                         transitionDuration={200}
                         PaperProps={{
                           sx: {
-                            mt: 0.5,
+                            mt: -2,
                             boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)",
                             borderRadius: 2,
                             minWidth: item.name === "Destination" ? 400 : 200,

@@ -6,54 +6,69 @@ import "react-multi-carousel/lib/styles.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { useNavigate } from "react-router-dom";
 
 const ServicesSection = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (path) => {
+    navigate(`/services/${path}`);
+  };
+
   const serviceCards = [
     {
       id: 1,
       title: "Visa Assistance",
       image: "./services/visa.jpg",
-      path: "/services/visa-assistance",
+      path: "visa-assistance",
     },
     {
       id: 2,
       title: "Language Programs",
       image: "./services/languageprogram.jpg",
+      path: "language-programs",
     },
     {
       id: 3,
       title: "Partner Universities",
       image: "./services/partneruni.jpg",
+      path: "partner-universities",
     },
     {
       id: 4,
       title: "Test Preparation Courses",
       image: "./services/test.jpg",
+      path: "test-preparation",
     },
     {
       id: 5,
       title: "University Selection Assistance",
       image: "./services/universityselection.jpg",
+      path: "university-selection",
     },
     {
       id: 6,
       title: "Study Abroad Services",
       image: "./services/studyabroad.jpg",
+      path: "study-abroad",
     },
     {
       id: 7,
       title: "Pre-Departure Support",
       image: "./services/predeparture.jpg",
+      path: "pre-departure",
     },
     {
       id: 8,
       title: "Scholarship & Financial Aid",
       image: "./services/finance.jpg",
+      path: "scholarships",
     },
     {
       id: 9,
       title: "Career Counselling",
       image: "./services/career.jpg",
+      path: "career-counselling",
     },
   ];
 
@@ -65,40 +80,40 @@ const ServicesSection = () => {
   };
 
   const ArrowBase = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: white;
-  border: none;
-  color: #007acc;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  transition: 0.3s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    color: #007acc;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
 
-  &:hover {
-    background: #007acc;
-    color: white;
-  }
-`;
+    &:hover {
+      background: #007acc;
+      color: white;
+    }
+  `;
 
- const PrevArrow = ({ onClick }) => (
-  <ArrowBase style={{ left: "10px" }} onClick={onClick}>
-    <ArrowBackIcon size={20} />
-  </ArrowBase>
-);
+  const PrevArrow = ({ onClick }) => (
+    <ArrowBase style={{ left: "10px" }} onClick={onClick}>
+      <ArrowBackIcon size={20} />
+    </ArrowBase>
+  );
 
- const NextArrow = ({ onClick }) => (
-  <ArrowBase style={{ right: "10px" }} onClick={onClick}>
-    <ArrowForwardIcon size={20} />
-  </ArrowBase>
-);
+  const NextArrow = ({ onClick }) => (
+    <ArrowBase style={{ right: "10px" }} onClick={onClick}>
+      <ArrowForwardIcon size={20} />
+    </ArrowBase>
+  );
 
   return (
     <SectionWrapper>
@@ -128,11 +143,14 @@ const ServicesSection = () => {
             draggable
             showDots={false}
             arrows
-             customLeftArrow={<PrevArrow />}
-             customRightArrow={<NextArrow />}
+            customLeftArrow={<PrevArrow />}
+            customRightArrow={<NextArrow />}
           >
             {serviceCards.map((card) => (
-              <ServiceCard key={card.id}>
+              <ServiceCard
+                key={card.id}
+                onClick={() => handleCardClick(card.path)}
+              >
                 <ServiceCardImage src={card.image} alt={card.title} />
                 <ServiceCardText>{card.title}</ServiceCardText>
               </ServiceCard>

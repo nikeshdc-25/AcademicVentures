@@ -16,9 +16,7 @@ import {
   useMediaQuery,
   Paper,
   Divider,
-  Fade,
   Grow,
-  Slide,
   Avatar,
   List,
   ListItem,
@@ -38,199 +36,210 @@ import {
   Star,
   Public,
   TrendingUp,
-  VerifiedUser,
   Quiz,
 } from "@mui/icons-material";
+import BookCounselling from "../components/BookCounselling";
+import visaImage from '/services/visa.jpg';
+import languageImage from '/services/languageprogram.jpg';
+import partnerUniImage from '/services/partneruni.jpg';
+import testImage from '/services/test.jpg';
+import universityselectImage from '/services/universityselection.jpg';
+import studyabroadImage from '/services/studyabroad.jpg';
+import predepartureImage from '/services/predeparture.jpg';
+import careerImage from '/services/career.jpg';
+import financeImage from '/services/finance.jpg';
+
+
 
 const services = [
-    {
-      id: "visa-assistance",
-      title: "Visa Assistance",
-      icon: <Assignment fontSize="large" />, 
-      image: "./services/visa.jpg",
-      description:
-        "Our comprehensive visa assistance program ensures you have the highest chance of approval with personalized guidance through every step of the complex visa application process.",
-      details: [
-        "Complete document checklist preparation tailored to your destination country",
-        "Visa application form assistance with error-proof review",
-        "Mock interview preparation with former visa officers",
-        "Financial documentation guidance including bank statements and sponsorship letters",
-        "Post-approval support including visa stamping guidance",
-        "Emergency assistance for last-minute applications",
-      ],
-      stats: "98% success rate across all countries",
-      benefits: [
-        "Dedicated visa consultant assigned to your case",
-        "Priority appointment booking assistance",
-        "Continuous status updates throughout the process",
-      ],
-    },
-    {
-      id: "language-programs",
-      title: "Language Programs",
-      icon: <Language fontSize="large" />, 
-      image: "./services/languageprogram.jpg",
-      description:
-        "Enhance your language skills with our tailored language programs designed for students, professionals, and travelers.",
-      details: [
-        "Customized courses for beginners to advanced levels",
-        "IELTS, TOEFL, and other exam preparation options",
-        "Interactive learning with native-speaking instructors",
-        "Flexible online and offline learning options",
-        "Certification upon course completion",
-      ],
-      stats: "Over 10,000 students trained worldwide",
-      benefits: [
-        "One-on-one tutoring available",
-        "Access to extensive digital learning materials",
-        "Personalized progress tracking and support",
-      ],
-    },
-    {
-      id: "partner-universities",
-      title: "Partner Universities",
-      icon: <School fontSize="large" />, 
-      image: "./services/partneruni.jpg",
-      description:
-        "Gain access to a network of top universities worldwide through our exclusive partnerships, ensuring quality education and seamless admission processes.",
-      details: [
-        "Direct admission pathways with reduced requirements",
-        "Scholarship opportunities for eligible students",
-        "Exclusive tie-ups with globally ranked institutions",
-        "Dedicated admission support and counseling",
-      ],
-      stats: "100+ partner universities across 20 countries",
-      benefits: [
-        "Simplified application process",
-        "Guaranteed seat for qualifying students",
-        "Support for visa and accommodation arrangements",
-      ],
-    },
-    {
-      id: "test-preparation",
-      title: "Test Preparation Courses",
-      icon: <Quiz fontSize="large" />, 
-      image: "./services/test.jpg",
-      description:
-        "Maximize your test scores with our expert-led preparation courses for standardized exams like SAT, GRE, GMAT, IELTS, and TOEFL.",
-      details: [
-        "Comprehensive study materials and practice tests",
-        "One-on-one coaching and group classes",
-        "Mock tests with detailed performance analysis",
-        "Exam-taking strategies and time management tips",
-      ],
-      stats: "Average score improvement of 20%",
-      benefits: [
-        "Flexible class schedules",
-        "Access to an extensive question bank",
-        "Experienced trainers with high success rates",
-      ],
-    },
-    {
-      id: "university-selection",
-      title: "University Selection Assistance",
-      icon: <AccountBalance fontSize="large" />, 
-      image: "./services/universityselection.jpg",
-      description:
-        "Find the perfect university for your aspirations with our expert guidance and customized recommendations.",
-      details: [
-        "Personalized shortlisting of best-fit universities",
-        "Application and documentation assistance",
-        "Guidance on tuition fees and scholarship opportunities",
-        "Admission essay and SOP review and enhancement",
-      ],
-      stats: "92% admission success rate",
-      benefits: [
-        "Expert career counseling included",
-        "Assistance with multiple university applications",
-        "Direct interaction with university representatives",
-      ],
-    },
-    {
-        id: "study-abroad",
-        title: "Study Abroad Services",
-        icon: <Public fontSize="large" />, 
-        image: "./services/studyabroad.jpg",
-        description:
-          "Achieve your academic dreams by studying abroad with our end-to-end support for international education.",
-        details: [
-          "Comprehensive study abroad consultation",
-          "Guidance on university selection and applications",
-          "Assistance with student visa and immigration procedures",
-          "Support for accommodation and living arrangements",
-          "Cultural and academic transition guidance",
-        ],
-        stats: "Thousands of students successfully placed in top institutions",
-        benefits: [
-          "Step-by-step guidance from application to arrival",
-          "Exclusive partnerships with global universities",
-          "Personalized support for every stage of your journey",
-        ],
-      },
-    {
-      id: "pre-departure-support",
-      title: "Pre-Departure Support",
-      icon: <FlightTakeoff fontSize="large" />, 
-      image: "./services/predeparture.jpg",
-      description:
-        "Prepare for your journey abroad with our complete pre-departure support, covering everything from travel to cultural adaptation.",
-      details: [
-        "Guidance on travel arrangements and packing essentials",
-        "Accommodation and local transportation setup",
-        "Cultural adaptation and survival skills training",
-        "Health insurance and banking setup advice",
-      ],
-      stats: "98% of students feel more confident after our sessions",
-      benefits: [
-        "Detailed checklist for a hassle-free transition",
-        "Networking opportunities with fellow students",
-        "24/7 emergency support upon arrival",
-      ],
-    },
-    {
-      id: "scholarship-financial-aid",
-      title: "Scholarship & Financial Aid Guidance",
-      icon: <MonetizationOn fontSize="large" />, 
-      image: "./services/finance.jpg",
-      description:
-        "Secure scholarships and financial aid options to support your education abroad with our expert guidance.",
-      details: [
-        "Comprehensive database of scholarships available",
-        "Assistance with scholarship applications and essays",
-        "Guidance on education loans and financial planning",
-      ],
-      stats: "Over $10 million in scholarships secured for students",
-      benefits: [
-        "Personalized funding strategy",
-        "Access to exclusive scholarship opportunities",
-        "Step-by-step loan application assistance",
-      ],
-    },
-    {
-      id: "career-counselling",
-      title: "Career Counselling",
-      icon: <Work fontSize="large" />, 
-      image: "./services/career.jpg",
-      description:
-        "Plan your career with expert advice on choosing the right course, university, and job market opportunities.",
-      details: [
-        "One-on-one career consultation sessions",
-        "Job market analysis and employment trends",
-        "Internship and job placement assistance",
-        "Resume building and interview preparation",
-      ],
-      stats: "85% of students land a job within 6 months of graduation",
-      benefits: [
-        "Industry-specific career mentoring",
-        "Networking with top employers",
-        "Personalized career growth roadmap",
-      ],
-    },
-  ];
-  
+  {
+    id: "visa-assistance",
+    title: "Visa Assistance",
+    icon: <Assignment fontSize="large" />,
+    image: visaImage,
+    description:
+      "Our comprehensive visa assistance program ensures you have the highest chance of approval with personalized guidance through every step of the complex visa application process.",
+    details: [
+      "Complete document checklist preparation tailored to your destination country",
+      "Visa application form assistance with error-proof review",
+      "Mock interview preparation with former visa officers",
+      "Financial documentation guidance including bank statements and sponsorship letters",
+      "Post-approval support including visa stamping guidance",
+      "Emergency assistance for last-minute applications",
+    ],
+    stats: "98% success rate across all countries",
+    benefits: [
+      "Dedicated visa consultant assigned to your case",
+      "Priority appointment booking assistance",
+      "Continuous status updates throughout the process",
+    ],
+  },
+  {
+    id: "language-programs",
+    title: "Language Programs",
+    icon: <Language fontSize="large" />,
+    image: languageImage,
+    description:
+      "Enhance your language skills with our tailored language programs designed for students, professionals, and travelers.",
+    details: [
+      "Customized courses for beginners to advanced levels",
+      "IELTS, TOEFL, and other exam preparation options",
+      "Interactive learning with native-speaking instructors",
+      "Flexible online and offline learning options",
+      "Certification upon course completion",
+    ],
+    stats: "Over 10,000 students trained worldwide",
+    benefits: [
+      "One-on-one tutoring available",
+      "Access to extensive digital learning materials",
+      "Personalized progress tracking and support",
+    ],
+  },
+  {
+    id: "partner-universities",
+    title: "Partner Universities",
+    icon: <School fontSize="large" />,
+    image: partnerUniImage,
+    description:
+      "Gain access to a network of top universities worldwide through our exclusive partnerships, ensuring quality education and seamless admission processes.",
+    details: [
+      "Direct admission pathways with reduced requirements",
+      "Scholarship opportunities for eligible students",
+      "Exclusive tie-ups with globally ranked institutions",
+      "Dedicated admission support and counseling",
+    ],
+    stats: "100+ partner universities across 20 countries",
+    benefits: [
+      "Simplified application process",
+      "Guaranteed seat for qualifying students",
+      "Support for visa and accommodation arrangements",
+    ],
+  },
+  {
+    id: "test-preparation",
+    title: "Test Preparation Courses",
+    icon: <Quiz fontSize="large" />,
+    image: testImage,
+    description:
+      "Maximize your test scores with our expert-led preparation courses for standardized exams like SAT, GRE, GMAT, IELTS, and TOEFL.",
+    details: [
+      "Comprehensive study materials and practice tests",
+      "One-on-one coaching and group classes",
+      "Mock tests with detailed performance analysis",
+      "Exam-taking strategies and time management tips",
+    ],
+    stats: "Average score improvement of 20%",
+    benefits: [
+      "Flexible class schedules",
+      "Access to an extensive question bank",
+      "Experienced trainers with high success rates",
+    ],
+  },
+  {
+    id: "university-selection",
+    title: "University Selection Assistance",
+    icon: <AccountBalance fontSize="large" />,
+    image: universityselectImage,
+    description:
+      "Find the perfect university for your aspirations with our expert guidance and customized recommendations.",
+    details: [
+      "Personalized shortlisting of best-fit universities",
+      "Application and documentation assistance",
+      "Guidance on tuition fees and scholarship opportunities",
+      "Admission essay and SOP review and enhancement",
+    ],
+    stats: "92% admission success rate",
+    benefits: [
+      "Expert career counseling included",
+      "Assistance with multiple university applications",
+      "Direct interaction with university representatives",
+    ],
+  },
+  {
+    id: "study-abroad",
+    title: "Study Abroad Services",
+    icon: <Public fontSize="large" />,
+    image: studyabroadImage,
+    description:
+      "Achieve your academic dreams by studying abroad with our end-to-end support for international education.",
+    details: [
+      "Comprehensive study abroad consultation",
+      "Guidance on university selection and applications",
+      "Assistance with student visa and immigration procedures",
+      "Support for accommodation and living arrangements",
+      "Cultural and academic transition guidance",
+    ],
+    stats: "Thousands of students successfully placed in top institutions",
+    benefits: [
+      "Step-by-step guidance from application to arrival",
+      "Exclusive partnerships with global universities",
+      "Personalized support for every stage of your journey",
+    ],
+  },
+  {
+    id: "pre-departure-support",
+    title: "Pre-Departure Support",
+    icon: <FlightTakeoff fontSize="large" />,
+    image: predepartureImage,
+    description:
+      "Prepare for your journey abroad with our complete pre-departure support, covering everything from travel to cultural adaptation.",
+    details: [
+      "Guidance on travel arrangements and packing essentials",
+      "Accommodation and local transportation setup",
+      "Cultural adaptation and survival skills training",
+      "Health insurance and banking setup advice",
+    ],
+    stats: "98% of students feel more confident after our sessions",
+    benefits: [
+      "Detailed checklist for a hassle-free transition",
+      "Networking opportunities with fellow students",
+      "24/7 emergency support upon arrival",
+    ],
+  },
+  {
+    id: "scholarship-financial-aid",
+    title: "Scholarship & Financial Aid Guidance",
+    icon: <MonetizationOn fontSize="large" />,
+    image: financeImage,
+    description:
+      "Secure scholarships and financial aid options to support your education abroad with our expert guidance.",
+    details: [
+      "Comprehensive database of scholarships available",
+      "Assistance with scholarship applications and essays",
+      "Guidance on education loans and financial planning",
+    ],
+    stats: "Over $10 million in scholarships secured for students",
+    benefits: [
+      "Personalized funding strategy",
+      "Access to exclusive scholarship opportunities",
+      "Step-by-step loan application assistance",
+    ],
+  },
+  {
+    id: "career-counselling",
+    title: "Career Counselling",
+    icon: <Work fontSize="large" />,
+    image: careerImage,
+    description:
+      "Plan your career with expert advice on choosing the right course, university, and job market opportunities.",
+    details: [
+      "One-on-one career consultation sessions",
+      "Job market analysis and employment trends",
+      "Internship and job placement assistance",
+      "Resume building and interview preparation",
+    ],
+    stats: "85% of students land a job within 6 months of graduation",
+    benefits: [
+      "Industry-specific career mentoring",
+      "Networking with top employers",
+      "Personalized career growth roadmap",
+    ],
+  },
+];
 
 const ServicePage = () => {
   const theme = useTheme();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { serviceId } = useParams();
   const navigate = useNavigate();
@@ -244,12 +253,17 @@ const ServicePage = () => {
         const element = document.getElementById(serviceId);
         if (element) {
           const yOffset = -100; // Adjust this value as needed
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: "smooth" });
         }
       }, 100);
     }
   }, [serviceId]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -302,8 +316,8 @@ const ServicePage = () => {
               textShadow: "1px 1px 2px rgba(0,0,0,0.3)",
             }}
           >
-            Comprehensive support for your global education journey, from initial
-            planning to career success
+            Comprehensive support for your global education journey, from
+            initial planning to career success
           </Typography>
         </Container>
       </Box>
@@ -384,11 +398,7 @@ const ServicePage = () => {
                       >
                         {service.icon}
                       </Avatar>
-                      <Typography
-                        variant="h6"
-                        component="h3"
-                        fontWeight="bold"
-                      >
+                      <Typography variant="h6" component="h3" fontWeight="bold">
                         {service.title}
                       </Typography>
                     </Box>
@@ -447,7 +457,10 @@ const ServicePage = () => {
                       color: expanded === service.id ? "white" : "primary.main",
                       fontSize: "2rem",
                       transition: "transform 0.3s ease",
-                      transform: expanded === service.id ? "rotate(180deg)" : "rotate(0)",
+                      transform:
+                        expanded === service.id
+                          ? "rotate(180deg)"
+                          : "rotate(0)",
                     }}
                   />
                 }
@@ -460,9 +473,7 @@ const ServicePage = () => {
                   minHeight: "80px !important",
                   "&:hover": {
                     bgcolor:
-                      expanded === service.id
-                        ? "primary.dark"
-                        : "action.hover",
+                      expanded === service.id ? "primary.dark" : "action.hover",
                   },
                   transition: "all 0.3s ease",
                   px: 4,
@@ -479,8 +490,7 @@ const ServicePage = () => {
                     sx={{
                       bgcolor:
                         expanded === service.id ? "white" : "primary.main",
-                      color:
-                        expanded === service.id ? "primary.main" : "white",
+                      color: expanded === service.id ? "primary.main" : "white",
                       mr: 3,
                       width: 48,
                       height: 48,
@@ -490,17 +500,14 @@ const ServicePage = () => {
                     {service.icon}
                   </Avatar>
                   <Box>
-                    <Typography
-                      variant="h5"
-                      component="h3"
-                      fontWeight="bold"
-                    >
+                    <Typography variant="h5" component="h3" fontWeight="bold">
                       {service.title}
                     </Typography>
                     <Typography
                       variant="subtitle2"
                       sx={{
-                        color: expanded === service.id ? "white" : "text.secondary",
+                        color:
+                          expanded === service.id ? "white" : "text.secondary",
                       }}
                     >
                       {service.stats}
@@ -552,7 +559,8 @@ const ServicePage = () => {
                       <Box
                         sx={{
                           display: "grid",
-                          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                          gridTemplateColumns:
+                            "repeat(auto-fit, minmax(250px, 1fr))",
                           gap: 2,
                         }}
                       >
@@ -617,6 +625,8 @@ const ServicePage = () => {
           bgcolor: "primary.dark",
           color: "white",
           py: 8,
+          mb: 8,
+          borderRadius: "2%",
           textAlign: "center",
           backgroundImage:
             "linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(21, 101, 192, 0.9)), url(https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&auto=format&fit=crop)",
@@ -634,12 +644,13 @@ const ServicePage = () => {
             Begin Your Educational Journey Today
           </Typography>
           <Typography variant="h6" component="p" sx={{ mb: 4 }}>
-            Our team of experts is ready to guide you every step of the way
+            Our team of experts is ready to guide you every step of the way!
           </Typography>
           <Button
             variant="contained"
             color="secondary"
             size="large"
+            onClick={() => setIsModalOpen(true)}
             sx={{
               px: 6,
               py: 1.5,
@@ -655,6 +666,10 @@ const ServicePage = () => {
           >
             Get Started Now
           </Button>
+          <BookCounselling
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </Container>
       </Box>
     </Box>
