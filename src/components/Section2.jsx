@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Section2Card from "./Section2Card";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Card data for the carousel
 const cardPairs = [
@@ -101,6 +101,11 @@ function Section2() {
       );
     }, 300);
   };
+  const navigate = useNavigate();
+  const handleAboutUsClick = () => {
+    navigate(`/aboutus`);
+  };
+
   useEffect(() => {
     setTimeout(() => setAnimationDirection(""), 300);
   }, [currentPairIndex]);
@@ -116,7 +121,7 @@ function Section2() {
           <ImageWrapper>
     <img src="./dot.png" alt="Decorative" />
   </ImageWrapper>
-            <TagBadge>About Us</TagBadge>
+            <TagBadge onClick={handleAboutUsClick}>About Us</TagBadge>
 
             <HeadingWrapper>
               <Heading>
@@ -134,12 +139,6 @@ function Section2() {
               universities worldwide, ensuring a seamless transition to studying
               abroad.
             </Description>
-            <CtaButton>
-              <CtaText>Schedule Free Counseling</CtaText>
-              <IconWrapper>
-                <ArrowOutwardIcon sx={{ fontSize: 20, color: "#007acc" }} />
-              </IconWrapper>
-            </CtaButton>
           </LeftColumn>
           <RightColumn>
             <CarouselContainer>
@@ -312,6 +311,11 @@ const TagBadge = styled.div`
   margin-bottom: 20px;
   display: inline-block;
   width: 30%;
+  curser: pointer;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(40, 104, 208, 0.78);
+  }
 `;
 
 const HeadingWrapper = styled.div`
@@ -344,34 +348,6 @@ const Description = styled.p`
   font-size: 18px;
   line-height: 30px;
   margin-bottom: 30px;
-`;
-
-const CtaButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 9999px;
-  background-color: #007acc;
-  padding: 5px 5px 5px 15px;
-  cursor: pointer;
-  border: none;
-  width: 60%;
-`;
-
-const CtaText = styled.span`
-  color: #ffffff;
-  font-size: 18px;
-  line-height: 28px;
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  width: 40px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 9999px;
-  background-color: #ffffff;
 `;
 
 const RightColumn = styled.div`

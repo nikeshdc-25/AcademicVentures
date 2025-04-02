@@ -1,10 +1,20 @@
 "use client";
 import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { useNavigate } from "react-router-dom";
+import BookCounselling from "./BookCounselling";
 
 function StudyAbroadHero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const handleServiceClick = () => {
+    navigate(`/services`);
+  };
+
   return (
     <HeroContainer>
       <BackgroundCircle />
@@ -24,7 +34,7 @@ function StudyAbroadHero() {
         universities worldwide, ensuring your study abroad journey is smooth and
         successful.
       </Description>
-      <ScheduleButton>
+      <ScheduleButton onClick={() => setIsModalOpen(true)}>
         <IconWrapper>
           <PhoneIcon style={{ color: "white" }} />
         </IconWrapper>
@@ -33,6 +43,10 @@ function StudyAbroadHero() {
         <ArrowOutwardIcon sx={{ fontSize: 25, color: "#007acc" }} />
         </ArrowIconContainer>
       </ScheduleButton>
+      <BookCounselling
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+      />
       <MainImage
         src="../section1.png"
         alt="Study abroad illustration"
@@ -45,7 +59,7 @@ function StudyAbroadHero() {
           ensure every aspect of your education abroad is covered.
         </ServiceDescription>
         <ViewServicesButton>
-          <ViewServicesText>View Services</ViewServicesText>
+          <ViewServicesText onClick={handleServiceClick}>View Services</ViewServicesText>
           <ArrowIconSmallContainer>
           <ArrowOutwardIcon sx={{ fontSize: 20, color: "#007acc" }} />
           </ArrowIconSmallContainer>

@@ -4,11 +4,13 @@ import styled from "styled-components";
 import Section3Carousel from "./Section3Carousel";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import BookCounselling from "./BookCounselling";
 
 function Section3() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState("next");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [carouselContent] = useState([
     {
@@ -123,12 +125,16 @@ function Section3() {
                   </TextContent>
                 </TextContentWrapper>
 
-                <CtaButton>
+                <CtaButton onClick={() => setIsModalOpen(true)}>
                   <CtaText>Schedule a Free Counseling</CtaText>
                   <IconWrapper>
                     <ArrowOutwardIcon sx={{ color: "white" }} />
                   </IconWrapper>
                 </CtaButton>
+                <BookCounselling
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                />
 
                 <NavigationRow>
                   <SlideCounter>
@@ -208,7 +214,6 @@ const TopRightImage = styled.div`
     right: -5px;
     width: 80px;
   }
-
 `;
 
 const SectionWrapper = styled.section`

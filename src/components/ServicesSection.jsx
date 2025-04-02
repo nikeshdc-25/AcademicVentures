@@ -10,10 +10,12 @@ import { useNavigate } from "react-router-dom";
 
 const ServicesSection = () => {
   const navigate = useNavigate();
-
   const handleCardClick = (path) => {
     navigate(`/services/${path}`);
   };
+    const handleServiceClick = () => {
+      navigate(`/services`);
+    };
 
   const serviceCards = [
     {
@@ -124,7 +126,7 @@ const ServicesSection = () => {
             <ServiceTag>Our Services</ServiceTag>
             <SectionTitle>Empowering Your Ambition</SectionTitle>
           </HeaderLeft>
-          <ExploreButton aria-label="Explore more services">
+          <ExploreButton onClick={handleServiceClick}>
             <ExploreText>Explore More</ExploreText>
             <IconWrapper>
               <ArrowOutwardIcon />
