@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import {
   RouterProvider,
   createBrowserRouter,
@@ -17,17 +16,7 @@ import MaltaPage from "./Pages/MaltaPage";
 import RomaniaPage from "./Pages/RomaniaPage";
 import USPage from "./Pages/USPage";
 import MalaysiaPage from "./Pages/MalaysiaPage";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#007acc",
-    },
-    secondary: {
-      main: "#f50057",
-    },
-  },
-});
+import TestPreparationPage from "./Pages/TestPreparationPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,12 +32,11 @@ const router = createBrowserRouter(
       <Route path="/malta" element={<MaltaPage />} />
       <Route path="/romania" element={<RomaniaPage />} />
       <Route path="/malaysia" element={<MalaysiaPage />} />
+      <Route path="/sat" element={<TestPreparationPage />} />
     </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ThemeProvider theme={theme}>
     <RouterProvider router={router} />
-  </ThemeProvider>
 );

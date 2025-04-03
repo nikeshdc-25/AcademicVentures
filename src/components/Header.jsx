@@ -87,12 +87,12 @@ const HeaderNav = () => {
     {
       name: "Test Preparation",
       subItems: [
-        { name: "SAT", path: "/test-prep/sat" },
-        { name: "IELTS", path: "/test-prep/ielts" },
-        { name: "GRE", path: "/test-prep/gre" },
-        { name: "GMAT", path: "/test-prep/gmat" },
-        { name: "PTE", path: "/test-prep/pte" },
-        { name: "TOEFL", path: "/test-prep/toefl" },
+        { name: "SAT", path: "/sat" },
+        { name: "IELTS", path: "/ielts" },
+        { name: "GRE", path: "/gre" },
+        { name: "GMAT", path: "/gmat" },
+        { name: "PTE", path: "/pte" },
+        { name: "TOEFL", path: "/toefl" },
       ],
     },
     { name: "Contact", path: "/contact" },

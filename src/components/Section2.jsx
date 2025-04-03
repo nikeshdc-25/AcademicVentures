@@ -313,7 +313,8 @@ const TagBadge = styled.div`
   width: 30%;
   curser: pointer;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
+    transition: 0.3s ease-out;
     box-shadow: 0 4px 8px rgba(40, 104, 208, 0.78);
   }
 `;
