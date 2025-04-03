@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Box,
   Container,
@@ -7,8 +7,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Avatar,
-  Divider,
   useTheme,
   useMediaQuery,
   Button,
@@ -18,22 +16,65 @@ import {
 import {
   School,
   Public,
-  Groups,
   EmojiEvents,
   Person,
   Email,
   Phone,
   LocationOn,
 } from "@mui/icons-material";
+import { useNavigate } from 'react-router-dom';
 import BookCounselling from "../components/BookCounselling";
 
 const AboutUsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [animatedValues, setAnimatedValues] = useState([0, 0, 0, 0]);
+  const animationRef = useRef(null);
+  const duration = 3000; // Animation duration in ms
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const animate = (timestamp) => {
+      const startTime = performance.now();
+      
+      const frame = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        setAnimatedValues([
+          Math.floor(progress * 1000), // 1000+
+          Math.floor(progress * 10),  // 10+
+          Math.floor(progress * 98),  // 98%
+          Math.floor(progress * 20)   // 20+
+        ]);
+
+        if (progress < 1) {
+          animationRef.current = requestAnimationFrame(frame);
+        }
+      };
+
+      animationRef.current = requestAnimationFrame(frame);
+      
+      return () => {
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
+      };
+    };
+
+    // Start animation when component mounts
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
   }, []);
 
   const teamMembers = [
@@ -234,7 +275,7 @@ const AboutUsPage = () => {
                 >
                   <Box sx={{ color: "white", mb: 1 }}>{stat.icon}</Box>
                   <Typography variant="h3" component="div" fontWeight="bold">
-                    {stat.value}
+                    {index === 2 ? `${animatedValues[index]}%` : `${animatedValues[index]}${stat.value.slice(-1)}`}
                   </Typography>
                   <Typography variant="h6">{stat.label}</Typography>
                 </Box>
@@ -552,6 +593,7 @@ const AboutUsPage = () => {
               variant="outlined"
               color="inherit"
               size="large"
+              onClick={() => navigate('/contact')}
               sx={{
                 px: 4,
                 py: 2,
