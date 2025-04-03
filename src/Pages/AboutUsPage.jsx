@@ -32,7 +32,7 @@ const AboutUsPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [animatedValues, setAnimatedValues] = useState([0, 0, 0, 0]);
   const animationRef = useRef(null);
-  const duration = 3000; // Animation duration in ms
+  const duration = 7000; // Animation duration in ms
 
   useEffect(() => {
     window.scrollTo(0, 0);

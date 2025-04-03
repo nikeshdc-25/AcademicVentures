@@ -1,12 +1,38 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const StatItem = React.memo(({ number, text, showDivider }) => {
+  const [displayNumber, setDisplayNumber] = useState("0");
+
+  useEffect(() => {
+    // Extract numeric value from the prop (handles cases like "2000+" or "95%")
+    const numericValue = parseInt(number.replace(/\D/g, ''));
+    const suffix = number.replace(/[0-9]/g, ''); // Get the suffix (+ or %)
+    
+    const end = numericValue;
+    const duration = 7000; // Animation duration in ms
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const currentValue = Math.floor(progress * end);
+      
+      setDisplayNumber(`${currentValue}${suffix}`);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [number]);
+
   return (
     <>
       <StatContainer>
-        <StatNumber>{number}</StatNumber>
+        <StatNumber>{displayNumber}</StatNumber>
         <StatText>{text}</StatText>
       </StatContainer>
       {showDivider && <Divider />}
