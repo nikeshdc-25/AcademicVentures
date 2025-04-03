@@ -5,12 +5,14 @@ import Section3Carousel from "./Section3Carousel";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import BookCounselling from "./BookCounselling";
+import { useNavigate } from "react-router-dom";
 
 function Section3() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState("next");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [carouselContent] = useState([
     {
@@ -34,12 +36,14 @@ function Section3() {
   ]);
 
   const serviceCategories = [
-    "Visa Assistance",
-    "Test Preparation",
-    "Scholarship Guidance",
-    "University Applications",
-    "Career Counseling",
+    { name: "Visa Assistance", id: "visa-assistance" },
+    { name: "Language Program", id: "language-programs" },
+    { name: "Partner Universities", id: "partner-universities" },
+    { name: "Study Abroad", id: "study-abroad" },
+    { name: "Pre-Departure Support", id: "pre-departure-support" },
+    { name: "Career Support", id: "career-counselling" },
   ];
+  
 
   function nextSlide() {
     if (isTransitioning) return;
@@ -68,11 +72,17 @@ function Section3() {
   return (
     <SectionWrapper>
       <ContentContainer>
-        <ServiceCategoriesNav>
-          {serviceCategories.map((category, index) => (
-            <CategoryButton key={index}>{category}</CategoryButton>
-          ))}
-        </ServiceCategoriesNav>
+      <ServiceCategoriesNav>
+  {serviceCategories.map((category, index) => (
+    <CategoryButton 
+      key={index}
+      onClick={() => navigate(`/services/${category.id}`)}
+    >
+      {category.name}
+    </CategoryButton>
+  ))}
+</ServiceCategoriesNav>
+
         <MainContentGrid>
           <BlueCard>
             <CardContentGrid>

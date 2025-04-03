@@ -18,31 +18,54 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  // Function to handle smooth scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   // Quick Links data
   const quickLinks = [
-    { title: "Home", url: "https://osom.one/" },
-    { title: "About Us", url: "https://osom.one/about-us" },
-    { title: "Services", url: "https://osom.one/services" },
-    {
-      title: "Student Success Stories",
-      url: "https://osom.one/student-success-stories",
+    { 
+      title: "Home", 
+      onClick: () => {
+        navigate("/");
+        scrollToTop();
+      } 
     },
-    { title: "Test Preparation", url: "https://osom.one/test-preparation" },
-    { title: "Contact", url: "https://osom.one/contact" },
+    { 
+      title: "About Us", 
+      onClick: () => navigate("/aboutus") 
+    },
+    { 
+      title: "Services", 
+      onClick: () => navigate("/services") 
+    },
+    { 
+      title: "Contact", 
+      onClick: () => navigate("/contact") 
+    },
     {
       title: "Partner Universities",
       url: "https://osom.one/partner-universities",
     },
   ];
 
-  // Our Capabilities data
-  const capabilities = [
-    { title: "Visa Assistance", url: "https://osom.one/" },
-    { title: "University Applications", url: "https://osom.one/" },
-    { title: "Scholarship Guidance", url: "https://osom.one/" },
-    { title: "Career Counseling", url: "https://osom.one/" },
+  const services = [
+    { title: "Visa Assistance", onClick: () => navigate("/services/visa-assistance") },
+    { title: "Language Programs", onClick: () => navigate("/services/language-programs") },
+    { title: "Partner Universities", onClick: () => navigate("/services/partner-universities") },
+    { title: "Study Abroad", onClick: () => navigate("/services/study-abroad") },
+    { title: "Pre-Departure Support", onClick: () => navigate("/services/pre-departure-support") },
+    { title: "Career Counselling", onClick: () => navigate("/services/career-counselling") },
+    { title: "Test Preparation", onClick: () => navigate("/services/test-preparation") },
   ];
 
   // Social media data
@@ -52,6 +75,7 @@ const Footer = () => {
     { icon: <InstagramIcon />, url: "https://osom.one/" },
     { icon: <YouTubeIcon />, url: "https://osom.one/" },
   ];
+  
   let currentYear = new Date().getFullYear();
 
   return (
@@ -90,8 +114,8 @@ const Footer = () => {
           position: "relative",
           width: "100%",
           bgcolor: "#161616",
-          height: "auto", // Adjust height for better flexibility
-          pb: 4, // Added padding for better spacing on smaller screens
+          height: "auto",
+          pb: 4,
         }}
       >
         <Container maxWidth="xl" sx={{ position: "relative" }}>
@@ -188,22 +212,39 @@ const Footer = () => {
 
               <Stack spacing={2}>
                 {quickLinks.map((link, index) => (
-                  <Link
-                    key={index}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    underline="none"
-                  >
-                    <Typography variant="body1" sx={{ color: "white" }}>
+                  link.onClick ? (
+                    <Typography 
+                      key={index}
+                      variant="body1" 
+                      sx={{ 
+                        color: "white",
+                        cursor: "pointer",
+                        "&:hover": {
+                          textDecoration: "underline"
+                        }
+                      }}
+                      onClick={link.onClick}
+                    >
                       {link.title}
                     </Typography>
-                  </Link>
+                  ) : (
+                    <Link
+                      key={index}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      underline="none"
+                    >
+                      <Typography variant="body1" sx={{ color: "white" }}>
+                        {link.title}
+                      </Typography>
+                    </Link>
+                  )
                 ))}
               </Stack>
             </Grid>
 
-            {/* Our Capabilities section */}
+            {/* Our Services section (replaced capabilities) */}
             <Grid item xs={12} md={2}>
               <Typography
                 variant="h6"
@@ -213,22 +254,25 @@ const Footer = () => {
                   mb: 2,
                 }}
               >
-                Our Capabilities
+                Our Services
               </Typography>
 
               <Stack spacing={2}>
-                {capabilities.map((capability, index) => (
-                  <Link
+                {services.map((service, index) => (
+                  <Typography 
                     key={index}
-                    href={capability.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    underline="none"
+                    variant="body1" 
+                    sx={{ 
+                      color: "white",
+                      cursor: "pointer",
+                      "&:hover": {
+                        textDecoration: "underline"
+                      }
+                    }}
+                    onClick={service.onClick}
                   >
-                    <Typography variant="body1" sx={{ color: "white" }}>
-                      {capability.title}
-                    </Typography>
-                  </Link>
+                    {service.title}
+                  </Typography>
                 ))}
               </Stack>
             </Grid>
