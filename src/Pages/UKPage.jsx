@@ -213,36 +213,40 @@ const UKPage = () => {
           Why Choose UK Education?
         </Typography>
         <Grid container spacing={4}>
-          {quickFacts.map((fact, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Paper
-                elevation={3}
-                sx={{
-                  p: 3,
-                  height: "100%",
-                  borderRadius: 3,
-                  transition: "transform 0.3s",
-                  "&:hover": {
-                    transform: "translateY(-5px)",
-                    boxShadow: theme.shadows[6],
-                  },
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                  <Avatar
-                    sx={{ bgcolor: "primary.main", color: "white", mr: 2 }}
-                  >
-                    {fact.icon}
-                  </Avatar>
-                  <Typography variant="h6" fontWeight="bold">
-                    {fact.title}
-                  </Typography>
-                </Box>
-                <Typography variant="body1">{fact.content}</Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
+  {quickFacts.map((fact, index) => (
+    <Grid item xs={12} md={4} key={index}>
+      <Paper
+        elevation={3}
+        sx={{
+          p: 3,
+          height: "100%",
+          borderRadius: 3,
+          border: "1px solid rgb(0, 47, 255)",
+          "&:hover": {
+            transform: "translateY(-5px)",
+            transition: "all 1s ease",
+            boxShadow: `
+              inset 0 0 50px rgba(0, 213, 255, 0.87),
+              ${theme.shadows[6]}
+            `,
+          },
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <Avatar
+            sx={{ bgcolor: "primary.main", color: "white", mr: 2 }}
+          >
+            {fact.icon}
+          </Avatar>
+          <Typography variant="h6" fontWeight="bold">
+            {fact.title}
+          </Typography>
+        </Box>
+        <Typography variant="body1">{fact.content}</Typography>
+      </Paper>
+    </Grid>
+  ))}
+</Grid>
       </Container>
 
       {/* Top Cities */}
@@ -263,6 +267,8 @@ const UKPage = () => {
                 sx={{
                   height: "100%",
                   display: "flex",
+                  border: "1px solid rgb(0, 47, 255)",
+
                   flexDirection: "column",
                   transition: "transform 0.3s",
                   "&:hover": {
@@ -329,6 +335,8 @@ const UKPage = () => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
+                  border: "1px solid rgb(0, 213, 255)",
+
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: theme.shadows[6],
@@ -526,8 +534,9 @@ const UKPage = () => {
           bgcolor: "primary.dark",
           color: "white",
           py: 8,
+          mb: 8,
           textAlign: "center",
-          backgroundImage: "linear-gradient(135deg, #1a237e, #283593)",
+          backgroundImage: "linear-gradient(135deg, #1a237e,rgb(0, 213, 255))",
         }}
       >
         <Container maxWidth="md">

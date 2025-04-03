@@ -216,10 +216,14 @@ const MalaysiaPage = () => {
                   p: 3,
                   height: "100%",
                   borderRadius: 3,
-                  transition: "transform 0.3s",
+                  border: "1px solid rgb(0, 65, 185)",
+                  transition: "transform 1s",
                   "&:hover": {
                     transform: "translateY(-5px)",
-                    boxShadow: theme.shadows[6],
+                    boxShadow: `
+                      inset 0 0 50px rgba(255, 81, 81, 0.87),
+                      ${theme.shadows[6]}
+                    `,
                   },
                 }}
               >
@@ -324,6 +328,7 @@ const MalaysiaPage = () => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
+                  border: "1px solid rgb(0, 65, 185)",
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: theme.shadows[6],
@@ -519,8 +524,9 @@ const MalaysiaPage = () => {
           bgcolor: "primary.dark",
           color: "white",
           py: 8,
+          mb: 8,
           textAlign: "center",
-          backgroundImage: "linear-gradient(135deg, #d32f2f, #b71c1c)",
+          backgroundImage: "linear-gradient(135deg,rgb(47, 129, 211), #b71c1c)",
         }}
       >
         <Container maxWidth="md">

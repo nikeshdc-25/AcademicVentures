@@ -217,10 +217,14 @@ const MaltaPage = () => {
                   p: 3,
                   height: "100%",
                   borderRadius: 3,
-                  transition: "transform 0.3s",
+                  border: "1px solid rgb(17, 57, 255)",
+                  transition: "transform 1s",
                   "&:hover": {
                     transform: "translateY(-5px)",
-                    boxShadow: theme.shadows[6],
+                    boxShadow: `
+                      inset 0 0 50px rgba(255, 45, 17, 0.87),
+                      ${theme.shadows[6]}
+                    `,
                   },
                 }}
               >
@@ -324,6 +328,7 @@ const MaltaPage = () => {
                 sx={{
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
+                  border: "1px solid rgb(25, 17, 255)",
                   transition: "transform 0.3s",
                   "&:hover": {
                     transform: "translateY(-5px)",
@@ -520,8 +525,9 @@ const MaltaPage = () => {
           bgcolor: "primary.dark",
           color: "white",
           py: 8,
+          mb: 8,
           textAlign: "center",
-          backgroundImage: "linear-gradient(135deg, #1565c0, #0d47a1)",
+          backgroundImage: "linear-gradient(135deg,rgb(155, 155, 155),rgb(255, 0, 0))",
         }}
       >
         <Container maxWidth="md">

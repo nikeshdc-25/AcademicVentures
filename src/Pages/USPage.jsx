@@ -219,10 +219,14 @@ useEffect(() => {
                   p: 3,
                   height: "100%",
                   borderRadius: 3,
-                  transition: "transform 0.3s",
+                  border: "1px solid rgb(0, 65, 185)",
+                  transition: "transform 1s",
                   "&:hover": {
                     transform: "translateY(-5px)",
-                    boxShadow: theme.shadows[6],
+                    boxShadow: `
+                      inset 0 0 50px rgba(193, 14, 14, 0.87),
+                      ${theme.shadows[6]}
+                    `,
                   },
                 }}
               >
@@ -327,6 +331,7 @@ useEffect(() => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
+                  border: "1px solid rgb(0, 65, 185)",
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: theme.shadows[6],
@@ -524,8 +529,9 @@ useEffect(() => {
           bgcolor: "primary.dark",
           color: "white",
           py: 8,
+          mb: 8,
           textAlign: "center",
-          backgroundImage: "linear-gradient(135deg, #0d47a1, #1976d2)",
+          backgroundImage: "linear-gradient(135deg, #0d47a1,rgb(193, 14, 14))",
         }}
       >
         <Container maxWidth="md">

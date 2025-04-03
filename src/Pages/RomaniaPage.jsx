@@ -217,10 +217,14 @@ const RomaniaPage = () => {
                   p: 3,
                   height: "100%",
                   borderRadius: 3,
-                  transition: "transform 0.3s",
+                  border: "1px solid rgb(17, 57, 255)",
+                  transition: "transform 1s",
                   "&:hover": {
                     transform: "translateY(-5px)",
-                    boxShadow: theme.shadows[6],
+                    boxShadow: `
+                      inset 0 0 50px rgba(255, 235, 17, 0.87),
+                      ${theme.shadows[6]}
+                    `,
                   },
                 }}
               >
@@ -325,6 +329,7 @@ const RomaniaPage = () => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
+                  border: "1px solid rgb(62, 185, 0)",
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: theme.shadows[6],
@@ -519,8 +524,9 @@ const RomaniaPage = () => {
           bgcolor: "primary.dark",
           color: "white",
           py: 8,
+          mb: 8,
           textAlign: "center",
-          backgroundImage: "linear-gradient(135deg, #2e7d32, #1b5e20)",
+          backgroundImage: "linear-gradient(135deg,rgb(0, 255, 17),rgb(255, 4, 4))",
         }}
       >
         <Container maxWidth="md">
