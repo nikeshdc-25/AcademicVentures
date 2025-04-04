@@ -32,7 +32,7 @@ const router = createBrowserRouter(
       <Route path="/malta" element={<MaltaPage />} />
       <Route path="/romania" element={<RomaniaPage />} />
       <Route path="/malaysia" element={<MalaysiaPage />} />
-      <Route path="/sat" element={<TestPreparationPage />} />
+      <Route path="/test-prep" element={<TestPreparationPage />} />
     </Route>
   )
 );

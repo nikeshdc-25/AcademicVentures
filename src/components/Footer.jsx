@@ -53,8 +53,8 @@ const Footer = () => {
       onClick: () => navigate("/contact") 
     },
     {
-      title: "Partner Universities",
-      url: "https://osom.one/partner-universities",
+      title: "Test Preparation",
+      onClick: () => navigate("/test-prep") 
     },
   ];
 
@@ -65,7 +65,7 @@ const Footer = () => {
     { title: "Study Abroad", onClick: () => navigate("/services/study-abroad") },
     { title: "Pre-Departure Support", onClick: () => navigate("/services/pre-departure-support") },
     { title: "Career Counselling", onClick: () => navigate("/services/career-counselling") },
-    { title: "Test Preparation", onClick: () => navigate("/services/test-preparation") },
+    { title: "Financial Aids", onClick: () => navigate("/services/scholarship-financial-aid") },
   ];
 
   // Social media data

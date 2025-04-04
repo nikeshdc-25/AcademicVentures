@@ -48,7 +48,6 @@ const HeaderNav = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [destinationAnchor, setDestinationAnchor] = useState(null);
-  const [testPrepAnchor, setTestPrepAnchor] = useState(null);
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
   const [hoveredCountry, setHoveredCountry] = useState("");
 
@@ -56,9 +55,6 @@ const HeaderNav = () => {
     setDestinationAnchor(event.currentTarget);
   };
 
-  const handleTestPrepOpen = (event) => {
-    setTestPrepAnchor(event.currentTarget);
-  };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMenuAnchor(event.currentTarget);
@@ -66,7 +62,6 @@ const HeaderNav = () => {
 
   const handleClose = () => {
     setDestinationAnchor(null);
-    setTestPrepAnchor(null);
     setMobileMenuAnchor(null);
   };
 
@@ -86,14 +81,7 @@ const HeaderNav = () => {
     { name: "Services", path: "/services" },
     {
       name: "Test Preparation",
-      subItems: [
-        { name: "SAT", path: "/sat" },
-        { name: "IELTS", path: "/ielts" },
-        { name: "GRE", path: "/gre" },
-        { name: "GMAT", path: "/gmat" },
-        { name: "PTE", path: "/pte" },
-        { name: "TOEFL", path: "/toefl" },
-      ],
+      path: "/test-prep",
     },
     { name: "Contact", path: "/contact" },
   ];
@@ -104,15 +92,16 @@ const HeaderNav = () => {
       color="transparent"
       elevation={0}
       sx={{
-        height: 90,
+        height: 75,
         width: "100%",
-        margin: 0,
+        marginBottom: 1,
+        marginTop: -1,
         padding: 0,
         top: 0,
         left: 0,
         right: 0,
         overflow: "hidden",
-        background: "linear-gradient(to right, #ffffff, #e5edff)",
+        background: "linear-gradient(to right,rgb(255, 255, 255),rgb(202, 217, 251))",
         backdropFilter: "blur(10px)",
         zIndex: theme.zIndex.appBar,
         borderBottom: "1px solid rgba(0, 122, 204, 0.1)",
@@ -148,8 +137,8 @@ const HeaderNav = () => {
               src={logo}
               alt="Academic Ventures Logo"
               style={{
-                width: 70,
-                height: 60,
+                width: 75,
+                height: 70,
                 marginRight: 10,
                 transition: "transform 0.3s ease",
               }}
@@ -159,7 +148,7 @@ const HeaderNav = () => {
               sx={{
                 color: theme.palette.primary.main,
                 fontWeight: 700,
-                fontSize: { xs: "1.3rem", md: "1.6rem" },
+                fontSize: { xs: "1.3rem", md: "1.9rem" },
                 fontFamily: "'Inter', sans-serif",
                 letterSpacing: "0.5px",
                 transition: "color 0.3s ease",

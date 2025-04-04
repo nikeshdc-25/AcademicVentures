@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
   Card,
   CardContent,
-  Divider,
   Table,
   List,
   ListItem,
@@ -19,8 +18,6 @@ import {
   Tabs,
   TabList,
   Tab,
-  TabPanel,
-  AspectRatio,
 } from "@mui/joy";
 import {
   School as SATIcon,
@@ -55,6 +52,9 @@ const TestPreparationPage = () => {
   const [currentTest, setCurrentTest] = useState("SAT");
   const [openPattern, setOpenPattern] = useState(false);
 
+useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const testData = {
     SAT: {
       icon: <SATIcon fontSize="large" />,
