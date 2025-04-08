@@ -18,6 +18,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  Divider,
+  Chip,
 } from "@mui/material";
 import {
   ExpandMore,
@@ -25,6 +31,10 @@ import {
   Work,
   Flag,
   CheckCircle,
+  Public,
+  School,
+  Language,
+  Close,
 } from "@mui/icons-material";
 import MalaysiaFlag from "/images/country/malaysia.png";
 import KLImage from "/images/cities/kuala-lumpur.jpg";
@@ -38,6 +48,7 @@ const MalaysiaPage = () => {
   const theme = useTheme();
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showUniversities, setShowUniversities] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -148,6 +159,102 @@ const MalaysiaPage = () => {
       name: "ASEAN Scholarships",
       amount: "NPR 350k one-time grant",
       eligibility: "Nepali citizens, good academics",
+    },
+  ];
+
+  const universityCategories = [
+    {
+      name: "Top-Ranked Universities",
+      icon: <Public color="primary" />,
+      universities: [
+        {
+          name: "Asia Pacific University of Technology & Innovation (APU)",
+          state: "Kuala Lumpur",
+          url: "https://www.apu.edu.my/",
+        },
+        {
+          name: "International Islamic University Malaysia (IIUM)",
+          state: "Selangor",
+          url: "https://www.iium.edu.my/",
+        },
+        {
+          name: "Multimedia University (MMU)",
+          state: "Selangor",
+          url: "https://www.mmu.edu.my/",
+        },
+        {
+          name: "MAHSA University",
+          state: "Selangor",
+          url: "https://mahsa.edu.my/",
+        },
+        {
+          name: "INTI International University",
+          state: "Negeri Sembilan",
+          url: "https://newinti.edu.my/campuses/inti-international-university/",
+        },
+      ],
+    },
+    {
+      name: "Mid-Tier & Student-Friendly Options",
+      icon: <School color="primary" />,
+      universities: [
+        {
+          name: "City University Malaysia",
+          state: "Selangor",
+          url: "https://city.edu.my/",
+        },
+        {
+          name: "Lincoln University College",
+          state: "Selangor",
+          url: "https://www.lincoln.edu.my/",
+        },
+        {
+          name: "Infrastructure University Kuala Lumpur (IUKL)",
+          state: "Selangor",
+          url: "https://iukl.edu.my/",
+        },
+        {
+          name: "UCSI University",
+          state: "Kuala Lumpur",
+          url: "https://www.ucsiuniversity.edu.my/",
+        },
+        {
+          name: "SEGi University",
+          state: "Selangor",
+          url: "https://www.segi.edu.my/",
+        },
+      ],
+    },
+    {
+      name: "Affordable and Flexible Entry Options",
+      icon: <Language color="primary" />,
+      universities: [
+        {
+          name: "Asia e University",
+          state: "Kuala Lumpur",
+          url: "https://aeu.edu.my/",
+        },
+        {
+          name: "University College of Aviation Malaysia",
+          state: "Selangor",
+          url: "https://aviation.edu.my/",
+        },
+        {
+          name: "IACT College",
+          state: "Selangor",
+          url: "https://www.iact.edu.my/",
+        },
+        {
+          name: "Berjaya University College",
+          state: "Kuala Lumpur",
+          url: "https://www.berjaya.edu.my/university/",
+        },
+        {
+          name: "DRB-HICOM University of Automotive Malaysia",
+          state: "Pahang",
+          url: "https://www.en.dhuautomotive.edu.my/",
+        },
+      ],
     },
   ];
 
@@ -328,7 +435,7 @@ const MalaysiaPage = () => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
-                  border: "1px solid rgb(0, 65, 185)",
+                  borderRight: "5px solid rgb(0, 65, 185)",
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: theme.shadows[6],
@@ -370,6 +477,30 @@ const MalaysiaPage = () => {
             </Grid>
           ))}
         </Grid>
+
+        <Box sx={{ textAlign: "center", mt: 6 }}>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => setShowUniversities(true)}
+            sx={{
+              px: 6,
+              py: 2,
+              borderRadius: "50px",
+              fontSize: "1.1rem",
+              fontWeight: "bold",
+              borderWidth: "2px",
+              "&:hover": {
+                borderWidth: "2px",
+                transform: "translateY(-3px)",
+                boxShadow: theme.shadows[4],
+              },
+              transition: "all 0.3s ease",
+            }}
+          >
+            View All Recommended Universities
+          </Button>
+        </Box>
       </Container>
 
       {/* Detailed Information */}
@@ -568,6 +699,83 @@ const MalaysiaPage = () => {
           />
         </Container>
       </Box>
+
+      {/* Universities Dialog */}
+      <Dialog
+        open={showUniversities}
+        onClose={() => setShowUniversities(false)}
+        maxWidth="md"
+        fullWidth
+        scroll="paper"
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold">
+            Recommended Malaysia Universities
+          </Typography>
+          <IconButton onClick={() => setShowUniversities(false)}>
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <Divider />
+        <DialogContent>
+          {universityCategories.map((category, index) => (
+            <Box key={index} sx={{ mb: 6 }}>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                {category.icon}
+                <Typography variant="h5" fontWeight="bold" sx={{ ml: 1 }}>
+                  {category.name}
+                </Typography>
+              </Box>
+              <Grid container spacing={2}>
+                {category.universities.map((uni, idx) => (
+                  <Grid item xs={12} sm={6} key={idx}>
+                    <Paper
+                      elevation={2}
+                      sx={{
+                        p: 2,
+                        borderRadius: 2,
+                        height: "100%",
+                        transition: "all 0.1s",
+                        "&:hover": {
+                          borderLeft: "5px solid red",
+                          transform: "translateY(-3px)",
+                          boxShadow: theme.shadows[4],
+                        },
+                      }}
+                    >
+                      <Typography variant="h6" fontWeight="medium">
+                        {uni.name}
+                      </Typography>
+                      <Chip
+                        label={uni.state}
+                        size="small"
+                        sx={{ mt: 0.5, mb: 1 }}
+                      />
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        href={uni.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        fullWidth
+                      >
+                        Visit Official Website
+                      </Button>
+                    </Paper>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          ))}
+        </DialogContent>
+
+      </Dialog>
     </Box>
   );
 };

@@ -82,47 +82,48 @@ const cardPairs = [
 function Section2() {
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
   const totalPairs = cardPairs.length;
-  const [animationDirection, setAnimationDirection] = useState("");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
+  const [activeButton, setActiveButton] = React.useState(null);
 
   const handlePrevClick = () => {
-    setAnimationDirection("slide-right");
-    setTimeout(() => {
-      setCurrentPairIndex((prevIndex) =>
-        prevIndex === 0 ? totalPairs - 1 : prevIndex - 1
-      );
-    }, 300);
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveButton("prev");
+    setCurrentPairIndex((prevIndex) =>
+      prevIndex === 0 ? totalPairs - 1 : prevIndex - 1
+    );
   };
 
   const handleNextClick = () => {
-    setAnimationDirection("slide-left");
-    setTimeout(() => {
-      setCurrentPairIndex((prevIndex) =>
-        prevIndex === totalPairs - 1 ? 0 : prevIndex + 1
-      );
-    }, 300);
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveButton("next");
+    setCurrentPairIndex((prevIndex) =>
+      prevIndex === totalPairs - 1 ? 0 : prevIndex + 1
+    );
   };
-  const navigate = useNavigate();
+
   const handleAboutUsClick = () => {
     navigate(`/aboutus`);
   };
 
   useEffect(() => {
-    setTimeout(() => setAnimationDirection(""), 300);
+    const timer = setTimeout(() => setIsAnimating(false), 500);
+    return () => clearTimeout(timer);
   }, [currentPairIndex]);
 
   const currentPair = cardPairs[currentPairIndex];
-  const [activeButton, setActiveButton] = React.useState(null);
 
   return (
     <Container>
       <ContentWrapper>
         <Section>
           <LeftColumn>
-          <ImageWrapper>
-    <img src="./dot.png" alt="Decorative" />
-  </ImageWrapper>
+            <ImageWrapper>
+              <img src="./dot.png" alt="Decorative" />
+            </ImageWrapper>
             <TagBadge onClick={handleAboutUsClick}>About Us</TagBadge>
-
             <HeadingWrapper>
               <Heading>
                 <HeadingText>Unleash Your Potential with</HeadingText>
@@ -142,32 +143,38 @@ function Section2() {
           </LeftColumn>
           <RightColumn>
             <CarouselContainer>
-              <AnimatedCarousel className={animationDirection}>
-                <CardGrid>
-                  <Section2Card {...currentPair.university} />
-                  <TestimonialCardWrapper>
-                    <Section2Card
-                      {...currentPair.testimonial}
-                      overlayPosition="top"
-                      overlayTop="246px"
-                    />
-                    <AdditionalContent>
-                      <AdditionalText>
-                        {currentPair.testimonial.additionalText}
-                      </AdditionalText>
-                    </AdditionalContent>
-                  </TestimonialCardWrapper>
-                </CardGrid>
-              </AnimatedCarousel>
+              <CarouselTrack
+                style={{
+                  transform: `translateX(-${currentPairIndex * 100}%)`,
+                  transition: isAnimating ? "transform 0.5s ease" : "none",
+                }}
+              >
+                {cardPairs.map((pair, index) => (
+                  <Slide key={index}>
+                    <CardGrid>
+                      <Section2Card {...pair.university} />
+                      <TestimonialCardWrapper>
+                        <Section2Card
+                          {...pair.testimonial}
+                          overlayPosition="top"
+                          overlayTop="246px"
+                        />
+                        <AdditionalContent>
+                          <AdditionalText>
+                            {pair.testimonial.additionalText}
+                          </AdditionalText>
+                        </AdditionalContent>
+                      </TestimonialCardWrapper>
+                    </CardGrid>
+                  </Slide>
+                ))}
+              </CarouselTrack>
 
               <NavigationControls>
                 <ButtonGroup>
                   <RoundButton
                     blue={activeButton === "prev"}
-                    onClick={() => {
-                      setActiveButton("prev");
-                      handlePrevClick();
-                    }}
+                    onClick={handlePrevClick}
                     aria-label="Previous cards"
                   >
                     <ArrowBackIcon
@@ -178,10 +185,7 @@ function Section2() {
                   </RoundButton>
                   <RoundButton
                     blue={activeButton === "next"}
-                    onClick={() => {
-                      setActiveButton("next");
-                      handleNextClick();
-                    }}
+                    onClick={handleNextClick}
                     aria-label="Next cards"
                   >
                     <ArrowForwardIcon
@@ -197,7 +201,12 @@ function Section2() {
                     <Indicator
                       key={index}
                       active={index === currentPairIndex}
-                      onClick={() => setCurrentPairIndex(index)}
+                      onClick={() => {
+                        if (!isAnimating) {
+                          setIsAnimating(true);
+                          setCurrentPairIndex(index);
+                        }
+                      }}
                       aria-label={`Go to card pair ${index + 1}`}
                     />
                   ))}
@@ -229,18 +238,8 @@ const ContentWrapper = styled.div`
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
-`;
-
-const AnimatedCarousel = styled.div`
-  display: flex;
-  transition: transform 1s ease-out;
-
-  &.slide-left {
-    transform: translateX(-30%);
-  }
-
-  &.slide-right {
-    transform: translateX(30%);
+   @media (max-width: 991px) {
+  max-width: 1400px;
   }
 `;
 
@@ -268,36 +267,50 @@ const LeftColumn = styled.div`
 const ImageWrapper = styled.div`
   position: absolute;
   left: 10px;
-  top: 150%;
-  width: 80px; 
+  top: 140%;
+  width: 80px;
   height: auto;
+    animation: float 1.5s ease-in-out infinite;
+@keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
 
   img {
-    width: 80%;
+    width: 75%;
     height: auto;
   }
 
   @media (max-width: 1024px) {
-    left: 5px;
+    left: 3px;
     width: 50px;
     img {
       width: 60%;
+      height: auto;
     }
   }
 
   @media (max-width: 768px) {
-    left: 0;
-    width: 40px;
-    img {
-      width: 50%;
-    }
+    display: none;
   }
 
   @media (max-width: 480px) {
-    display: none; /* Hide image on very small screens */
+    display: none;
   }
 `;
-
 
 const TagBadge = styled.div`
   color: #333;
@@ -311,7 +324,7 @@ const TagBadge = styled.div`
   margin-bottom: 20px;
   display: inline-block;
   width: 30%;
-  curser: pointer;
+  cursor: pointer;
   &:hover {
     transform: scale(1.04);
     transition: 0.3s ease-out;
@@ -321,6 +334,9 @@ const TagBadge = styled.div`
 
 const HeadingWrapper = styled.div`
   margin-bottom: 30px;
+  @media (max-width: 768px) {
+    margin-bottom: -25px;
+  }
 `;
 
 const Heading = styled.h2`
@@ -359,6 +375,20 @@ const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+  @media (max-width: 640px) {
+      width: 98%;
+      margin-left: -15px;
+  }
+`;
+
+const CarouselTrack = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const Slide = styled.div`
+  min-width: 100%;
+  transition: transform 0.5s ease;
 `;
 
 const CardGrid = styled.div`
@@ -369,17 +399,23 @@ const CardGrid = styled.div`
     gap: 20px;
   }
   @media (max-width: 640px) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 `;
 
 const TestimonialCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const AdditionalContent = styled.div`
   margin-top: 20px;
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const AdditionalText = styled.p`
@@ -389,18 +425,11 @@ const AdditionalText = styled.p`
   margin-bottom: 10px;
 `;
 
-const StudentInfo = styled.p`
-  color: #666;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 12px;
-`;
-
 const NavigationControls = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 const ButtonGroup = styled.div`

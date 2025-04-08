@@ -42,7 +42,7 @@ function StatSection() {
             </Description>
             <StatsContainer>
               <StatItem number="2000+" text="Students Counseled" showDivider />
-              <StatItem number="150+" text="Partner Universities" showDivider />
+              <StatItem number="125+" text="Partner Universities" showDivider />
               <StatItem number="95%" text="Visa Success" showDivider />
               <StatItem number="100+" text="Scholarships" showDivider={false} />
             </StatsContainer>
@@ -66,12 +66,13 @@ const HeroContainer = styled.section`
     padding: 60px 40px;
   }
   @media (max-width: 640px) {
-    padding: 40px 20px;
+    padding: 20px 20px;
   }
 `;
 
 const HeroContent = styled.div`
   border-radius: 40px;
+    font-family: Open Sans;
   height: 750px;
   position: relative;
   background-color: rgba(0, 0, 0, 0.4);
@@ -80,6 +81,7 @@ const HeroContent = styled.div`
   align-items: center;
   @media (max-width: 640px) {
     padding: 20px;
+    height: 450px;
   }
 `;
 
@@ -105,7 +107,7 @@ const LogoContainer = styled.header`
 `;
 
 const LogoWrapper = styled.div`
-  width: 99px;
+  width: 50px;
   height: 50px;
   border-radius: 50%;
   display: flex;
@@ -115,6 +117,12 @@ const LogoWrapper = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
+  @media (max-width: 640px) {
+    & > svg {
+      font-size: 80px !important;
+        width: 80px;
+    }
+  }
 `;
 
 const ContentSection = styled.div`
@@ -136,8 +144,9 @@ const Heading = styled.h1`
     line-height: 62px;
   }
   @media (max-width: 640px) {
-    font-size: 36px;
-    line-height: 47px;
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -152,9 +161,7 @@ const Description = styled.p`
     line-height: 27px;
   }
   @media (max-width: 640px) {
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: -30px;
+    display: none;
   }
 `;
 
@@ -167,6 +174,10 @@ const StatsContainer = styled.div`
   @media (max-width: 991px) {
     flex-wrap: wrap;
     gap: 30px;
+  }
+  @media (max-width: 640px) {
+    margin-top: 40px;
+    gap: 20px;
   }
 `;
 

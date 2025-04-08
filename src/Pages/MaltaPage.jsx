@@ -31,7 +31,10 @@ import VallettaImage from "/images/cities/valletta.jpg";
 import MsidaImage from "/images/cities/msida.jpg";
 import GozoImage from "/images/cities/gozo.jpg";
 import MaltaUniImage from "/images/Universities/malta-uni.jpg";
-import MCASTImage from "/images/Universities/mcast.jpg";
+import AUMImage from "/images/Universities/aum.jpg";
+import GCMImage from "/images/Universities/gcm.jpg";
+import LSCMaltaImage from "/images/Universities/lscm.jpg";
+import MDXMaltaImage from "/images/Universities/mdxm.jpg";
 import BookCounselling from "../components/BookCounselling";
 
 const MaltaPage = () => {
@@ -112,16 +115,47 @@ const MaltaPage = () => {
       },
     },
     {
-      name: "Malta College of Arts, Science & Technology (MCAST)",
-      image: MCASTImage,
+      name: "American University of Malta (AUM)",
+      image: AUMImage,
       stats: {
-        ranking: "Top vocational institute",
+        ranking: "Emerging private university",
+        acceptance: "65%",
+        popular: "Engineering, Business, Game Development",
+        fees: "NPR 1M-1.5M/year",
+      },
+    },
+    {
+      name: "Global College Malta (GCM)",
+      image: GCMImage,
+      stats: {
+        ranking: "Recognized private institution",
+        acceptance: "70%",
+        popular: "Business, Management, IT",
+        fees: "NPR 800k-1.2M/year",
+      },
+    },
+    {
+      name: "London School of Commerce Malta (LSC Malta)",
+      image: LSCMaltaImage,
+      stats: {
+        ranking: "Affiliated with UK universities",
         acceptance: "75%",
-        popular: "Engineering, Media, Hospitality",
-        fees: "NPR 500k-800k/year",
+        popular: "Business, MBA, Finance",
+        fees: "NPR 700k-1.1M/year",
+      },
+    },
+    {
+      name: "Middlesex University Malta (MDX Malta)",
+      image: MDXMaltaImage,
+      stats: {
+        ranking: "UK-based branch campus",
+        acceptance: "68%",
+        popular: "Computer Science, Business, IT",
+        fees: "NPR 900k-1.3M/year",
       },
     },
   ];
+  
 
   const admissionSteps = [
     "Choose from 300+ English-taught programs",
@@ -328,7 +362,7 @@ const MaltaPage = () => {
                 sx={{
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
-                  border: "1px solid rgb(25, 17, 255)",
+                  borderRight: "5px solid rgb(25, 17, 255)",
                   transition: "transform 0.3s",
                   "&:hover": {
                     transform: "translateY(-5px)",

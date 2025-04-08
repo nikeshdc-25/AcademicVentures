@@ -16,12 +16,16 @@ import {
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // md = 900px by default, but we'll adjust
 
   // Function to handle smooth scroll to top
   const scrollToTop = () => {
@@ -71,7 +75,7 @@ const Footer = () => {
   // Social media data
   const socialMedia = [
     { icon: <FacebookIcon />, url: "https://www.facebook.com/people/Academic-Ventures-International/61557008751706/" },
-    { icon: <LinkedInIcon />, url: "https://osom.one/" },
+    { icon: <LinkedInIcon />, url: "https://www.linkedin.com/in/your-profile" }, // Updated with your LinkedIn
     { icon: <InstagramIcon />, url: "https://osom.one/" },
     { icon: <YouTubeIcon />, url: "https://osom.one/" },
   ];
@@ -142,13 +146,9 @@ const Footer = () => {
                 }}
               >
                 At <i>Academic Ventures</i>, we specialize in providing
-                <br />
                 comprehensive study abroad guidance to help students
-                <br />
                 achieve their educational dreams. Our dedicated team
-                <br />
                 is committed to offering personalized support with a
-                <br />
                 focus on success.
               </Typography>
 
@@ -244,8 +244,8 @@ const Footer = () => {
               </Stack>
             </Grid>
 
-            {/* Our Services section (replaced capabilities) */}
-            <Grid item xs={12} md={2}>
+            {/* Our Services section - hidden on mobile */}
+            <Grid item xs={12} md={2} sx={{ display: { xs: "none", md: "block" } }}>
               <Typography
                 variant="h6"
                 sx={{
@@ -353,16 +353,26 @@ const Footer = () => {
 
           {/* Copyright section */}
           <Divider sx={{ mt: 6, bgcolor: "rgba(255, 255, 255, 0.2)" }} />
-          <Typography
-            variant="body2"
-            sx={{
-              color: "white",
-              py: 3,
-              textAlign: "center",
+         
+            <Typography
+              variant="body2"
+              sx={{
+                color: "white",
+                py: 3,
+                textAlign: "center",
+              }}
+            >
+               <Link
+            href="https://www.linkedin.com/in/nikeshdc/"
+            target="_blank"
+            sx={{color: 'white',
+              "&:hover": {
+                textDecoration: 'none',
+              },
             }}
           >
-            © {currentYear} Academic Ventures. All Rights Reserved.
-          </Typography>
+              © </Link> {currentYear} Academic Ventures. All Rights Reserved.
+            </Typography>
         </Container>
       </Box>
     </Box>

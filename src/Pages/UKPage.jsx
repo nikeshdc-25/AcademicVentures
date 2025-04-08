@@ -18,6 +18,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  Divider,
+  Chip,
 } from "@mui/material";
 import {
   ExpandMore,
@@ -25,6 +31,10 @@ import {
   Work,
   Flag,
   CheckCircle,
+  Close,
+  School,
+  Public,
+  Language,
 } from "@mui/icons-material";
 import UKFlag from "/images/country/uk.png";
 import LondonImage from "/images/cities/london.jpg";
@@ -38,6 +48,7 @@ const UKPage = () => {
   const theme = useTheme();
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showUniversities, setShowUniversities] = useState(false);
 
   // Exchange rate: 1 GBP ≈ 170 NPR
   const handleChange = (panel) => (event, isExpanded) => {
@@ -155,6 +166,177 @@ const UKPage = () => {
     },
   ];
 
+  const universityCategories = [
+    {
+      name: "Top-Ranked Universities",
+      icon: <Public color="primary" />,
+      universities: [
+        {
+          name: "University of Oxford",
+          state: "England",
+          url: "https://www.ox.ac.uk",
+        },
+        {
+          name: "University of Cambridge",
+          state: "England",
+          url: "https://www.cam.ac.uk",
+        },
+        {
+          name: "Imperial College London",
+          state: "England",
+          url: "https://www.imperial.ac.uk",
+        },
+        {
+          name: "University College London (UCL)",
+          state: "England",
+          url: "https://www.ucl.ac.uk",
+        },
+        {
+          name: "University of Edinburgh",
+          state: "Scotland",
+          url: "https://www.ed.ac.uk",
+        },
+        {
+          name: "University of Manchester",
+          state: "England",
+          url: "https://www.manchester.ac.uk",
+        },
+        {
+          name: "King’s College London",
+          state: "England",
+          url: "https://www.kcl.ac.uk",
+        },
+        {
+          name: "University of Bristol",
+          state: "England",
+          url: "https://www.bristol.ac.uk",
+        },
+        {
+          name: "University of Glasgow",
+          state: "Scotland",
+          url: "https://www.gla.ac.uk",
+        },
+        {
+          name: "University of Birmingham",
+          state: "England",
+          url: "https://www.birmingham.ac.uk",
+        },
+      ],
+    },
+    {
+      name: "Mid-Tier & Student-Friendly Options",
+      icon: <School color="primary" />,
+      universities: [
+        {
+          name: "University of Portsmouth",
+          state: "England",
+          url: "https://www.port.ac.uk",
+        },
+        {
+          name: "University of Greenwich",
+          state: "England",
+          url: "https://www.gre.ac.uk",
+        },
+        {
+          name: "University of West London",
+          state: "England",
+          url: "https://www.uwl.ac.uk",
+        },
+        {
+          name: "London Metropolitan University",
+          state: "England",
+          url: "https://www.londonmet.ac.uk",
+        },
+        {
+          name: "University of East London (UEL)",
+          state: "England",
+          url: "https://www.uel.ac.uk",
+        },
+        {
+          name: "University of Wolverhampton",
+          state: "England",
+          url: "https://www.wlv.ac.uk",
+        },
+        {
+          name: "Coventry University",
+          state: "England",
+          url: "https://www.coventry.ac.uk",
+        },
+        {
+          name: "Middlesex University London",
+          state: "England",
+          url: "https://www.mdx.ac.uk",
+        },
+        {
+          name: "University of Bedfordshire",
+          state: "England",
+          url: "https://www.beds.ac.uk",
+        },
+        {
+          name: "University of Sunderland",
+          state: "England",
+          url: "https://www.sunderland.ac.uk",
+        },
+      ],
+    },
+    {
+      name: "Affordable and Flexible Entry Options",
+      icon: <Language color="primary" />,
+      universities: [
+        {
+          name: "Leeds Beckett University",
+          state: "England",
+          url: "https://www.leedsbeckett.ac.uk",
+        },
+        {
+          name: "Teesside University",
+          state: "England",
+          url: "https://www.tees.ac.uk",
+        },
+        {
+          name: "University of Chester",
+          state: "England",
+          url: "https://www1.chester.ac.uk",
+        },
+        {
+          name: "University of Central Lancashire (UCLan)",
+          state: "England",
+          url: "https://www.uclan.ac.uk",
+        },
+        {
+          name: "University of South Wales",
+          state: "Wales",
+          url: "https://www.southwales.ac.uk",
+        },
+        {
+          name: "Sheffield Hallam University",
+          state: "England",
+          url: "https://www.shu.ac.uk",
+        },
+        {
+          name: "University of Northampton",
+          state: "England",
+          url: "https://www.northampton.ac.uk",
+        },
+        {
+          name: "Solent University",
+          state: "England",
+          url: "https://www.solent.ac.uk",
+        },
+        {
+          name: "London South Bank University",
+          state: "England",
+          url: "https://www.lsbu.ac.uk",
+        },
+        {
+          name: "University of Roehampton",
+          state: "England",
+          url: "https://www.roehampton.ac.uk",
+        },
+      ],
+    },
+  ];
+
   return (
     <Box sx={{ bgcolor: "background.default", minHeight: "100vh" }}>
       {/* Hero Section */}
@@ -213,40 +395,40 @@ const UKPage = () => {
           Why Choose UK Education?
         </Typography>
         <Grid container spacing={4}>
-  {quickFacts.map((fact, index) => (
-    <Grid item xs={12} md={4} key={index}>
-      <Paper
-        elevation={3}
-        sx={{
-          p: 3,
-          height: "100%",
-          borderRadius: 3,
-          border: "1px solid rgb(0, 47, 255)",
-          "&:hover": {
-            transform: "translateY(-5px)",
-            transition: "all 1s ease",
-            boxShadow: `
+          {quickFacts.map((fact, index) => (
+            <Grid item xs={12} md={4} key={index}>
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 3,
+                  height: "100%",
+                  borderRadius: 3,
+                  border: "1px solid rgb(0, 47, 255)",
+                  "&:hover": {
+                    transform: "translateY(-5px)",
+                    transition: "all 1s ease",
+                    boxShadow: `
               inset 0 0 50px rgba(0, 213, 255, 0.87),
               ${theme.shadows[6]}
             `,
-          },
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-          <Avatar
-            sx={{ bgcolor: "primary.main", color: "white", mr: 2 }}
-          >
-            {fact.icon}
-          </Avatar>
-          <Typography variant="h6" fontWeight="bold">
-            {fact.title}
-          </Typography>
-        </Box>
-        <Typography variant="body1">{fact.content}</Typography>
-      </Paper>
-    </Grid>
-  ))}
-</Grid>
+                  },
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                  <Avatar
+                    sx={{ bgcolor: "primary.main", color: "white", mr: 2 }}
+                  >
+                    {fact.icon}
+                  </Avatar>
+                  <Typography variant="h6" fontWeight="bold">
+                    {fact.title}
+                  </Typography>
+                </Box>
+                <Typography variant="body1">{fact.content}</Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
 
       {/* Top Cities */}
@@ -335,7 +517,7 @@ const UKPage = () => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
-                  border: "1px solid rgb(0, 213, 255)",
+                  borderRight: "5px solid rgb(0, 213, 255)",
 
                   "&:hover": {
                     transform: "translateY(-5px)",
@@ -378,6 +560,30 @@ const UKPage = () => {
             </Grid>
           ))}
         </Grid>
+
+        <Box sx={{ textAlign: "center", mt: 6 }}>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => setShowUniversities(true)}
+            sx={{
+              px: 6,
+              py: 2,
+              borderRadius: "50px",
+              fontSize: "1.1rem",
+              fontWeight: "bold",
+              borderWidth: "2px",
+              "&:hover": {
+                borderWidth: "2px",
+                transform: "translateY(-3px)",
+                boxShadow: theme.shadows[4],
+              },
+              transition: "all 0.3s ease",
+            }}
+          >
+            View All Recommended Universities
+          </Button>
+        </Box>
       </Container>
 
       {/* Detailed Information */}
@@ -579,6 +785,82 @@ const UKPage = () => {
           />
         </Container>
       </Box>
+
+      {/* Universities Dialog */}
+      <Dialog
+        open={showUniversities}
+        onClose={() => setShowUniversities(false)}
+        maxWidth="md"
+        fullWidth
+        scroll="paper"
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold">
+            Recommended UK Universities
+          </Typography>
+          <IconButton onClick={() => setShowUniversities(false)}>
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <Divider />
+        <DialogContent>
+          {universityCategories.map((category, index) => (
+            <Box key={index} sx={{ mb: 6 }}>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 4, mt: 4 }}>
+                {category.icon}
+                <Typography variant="h5" fontWeight="bold" sx={{ ml: 1 }}>
+                  {category.name}
+                </Typography>
+              </Box>
+              <Grid container spacing={2}>
+                {category.universities.map((uni, idx) => (
+                  <Grid item xs={12} sm={6} key={idx}>
+                    <Paper
+                      elevation={2}
+                      sx={{
+                        p: 2,
+                        borderRadius: 2,
+                        height: "100%",
+                        transition: "all 0.1s",
+                        "&:hover": {
+                          borderLeft: "5px solid red",
+                          transform: "translateY(-3px)",
+                          boxShadow: theme.shadows[4],
+                        },
+                      }}
+                    >
+                      <Typography variant="h6" fontWeight="medium">
+                        {uni.name}
+                      </Typography>
+                      <Chip
+                        label={uni.state}
+                        size="small"
+                        sx={{ mt: 0.5, mb: 1 }}
+                      />
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        href={uni.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        fullWidth
+                      >
+                        Visit Official Website
+                      </Button>
+                    </Paper>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          ))}
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

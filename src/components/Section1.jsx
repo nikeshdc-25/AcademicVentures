@@ -9,8 +9,8 @@ import BookCounselling from "./BookCounselling";
 
 function StudyAbroadHero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const navigate = useNavigate();
+
   const handleServiceClick = () => {
     navigate(`/services`);
   };
@@ -40,17 +40,14 @@ function StudyAbroadHero() {
         </IconWrapper>
         <ButtonText>Schedule Your Free Counseling</ButtonText>
         <ArrowIconContainer>
-        <ArrowOutwardIcon sx={{ fontSize: 25, color: "#007acc" }} />
+          <ArrowOutwardIcon sx={{ fontSize: 25, color: "#007acc" }} />
         </ArrowIconContainer>
       </ScheduleButton>
       <BookCounselling
-        isOpen={isModalOpen} 
+        isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-      <MainImage
-        src="../section1.png"
-        alt="Study abroad illustration"
-      />
+      <MainImage src="../section1.png" alt="Study abroad illustration" />
       <ServicesCard>
         <ServiceTitle>Explore Our Services</ServiceTitle>
         <ServiceDescription>
@@ -58,10 +55,10 @@ function StudyAbroadHero() {
           comprehensive test preparation for PTE, SAT, IELTS, and more, we
           ensure every aspect of your education abroad is covered.
         </ServiceDescription>
-        <ViewServicesButton>
-          <ViewServicesText onClick={handleServiceClick}>View Services</ViewServicesText>
+        <ViewServicesButton onClick={handleServiceClick}>
+          <ViewServicesText>View Services</ViewServicesText>
           <ArrowIconSmallContainer>
-          <ArrowOutwardIcon sx={{ fontSize: 20, color: "#007acc" }} />
+            <ArrowOutwardIcon sx={{ fontSize: 20, color: "#007acc" }} />
           </ArrowIconSmallContainer>
         </ViewServicesButton>
       </ServicesCard>
@@ -76,6 +73,15 @@ const HeroContainer = styled.section`
   padding: 20px;
   overflow: hidden;
   background-color: #efefed;
+
+  @media (max-width: 1700px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    border-radius: 25px;
+  }
 `;
 
 const BackgroundCircle = styled.div`
@@ -86,6 +92,19 @@ const BackgroundCircle = styled.div`
   left: 10px;
   top: 232px;
   background-color: #e3f2fd;
+
+  @media (max-width: 1700px) {
+    width: 180px;
+    height: 180px;
+    top: 200px;
+  }
+
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 120px;
+    top: 150px;
+    left: 5px;
+  }
 `;
 
 const BackgroundStripe = styled.div`
@@ -97,6 +116,16 @@ const BackgroundStripe = styled.div`
   left: 939px;
   top: -121px;
   background-color: #30302b;
+
+  @media (max-width: 1700px) {
+    left: 800px;
+  }
+
+  @media (max-width: 768px) {
+    width: 200px;
+    left: 50%;
+    top: -50px;
+  }
 `;
 
 const BlueBlurCircle = styled.div`
@@ -109,15 +138,37 @@ const BlueBlurCircle = styled.div`
   left: 603px;
   top: 238px;
   background-color: #007acc;
+
+  @media (max-width: 1700px) {
+    width: 250px;
+    height: 250px;
+    left: 500px;
+    top: 200px;
+  }
+
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 180px;
+    left: 30%;
+    top: 150px;
+  }
 `;
 
 const HeadingContainer = styled.div`
   width: 500px;
   position: relative;
   margin-left: 100px;
-  @media (max-width: 991px) {
+  z-index: 1;
+
+  @media (max-width: 1700px) {
+    width: 450px;
+    margin-left: 50px;
+  }
+
+  @media (max-width: 768px) {
     width: 90%;
     margin-left: 20px;
+    margin-top: 20px;
   }
 `;
 
@@ -128,9 +179,16 @@ const Heading = styled.h1`
   line-height: 75px;
   display: flex;
   flex-direction: column;
-  @media (max-width: 640px) {
+  margin: 0;
+
+  @media (max-width: 1700px) {
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  @media (max-width: 768px) {
     font-size: 36px;
-    line-height: 48px;
+    line-height: 45px;
   }
 `;
 
@@ -147,13 +205,21 @@ const Description = styled.p`
   max-width: 620px;
   margin-left: 100px;
   margin-top: 20px;
-  @media (max-width: 640px) {
+  z-index: 1;
+
+  @media (max-width: 1700px) {
+    width: 450px;
+    margin-left: 50px;
     font-size: 16px;
     line-height: 24px;
   }
-  @media (max-width: 991px) {
+
+  @media (max-width: 768px) {
     width: 90%;
     margin-left: 20px;
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 15px;
   }
 `;
 
@@ -169,10 +235,23 @@ const ScheduleButton = styled.button`
   background-color: #007acc;
   border: none;
   cursor: pointer;
-  @media (max-width: 640px) {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+  z-index: 1;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 1700px) {
+    margin-left: 50px;
+    padding: 5px 8px 5px 15px;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-top: 20px;
+    width: calc(100% - 40px);
+    justify-content: center;
   }
 `;
 
@@ -180,6 +259,14 @@ const ButtonText = styled.span`
   color: #fff;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
+
+  @media (max-width: 1700px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const ArrowIconContainer = styled.div`
@@ -191,6 +278,12 @@ const ArrowIconContainer = styled.div`
   align-items: center;
   border-radius: 50%;
   background-color: #fff;
+
+  @media (max-width: 1700px) {
+    width: 28px;
+    height: 28px;
+    padding: 8px;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -207,12 +300,22 @@ const MainImage = styled.img`
   right: 0;
   top: 139px;
   object-fit: cover;
-  @media (max-width: 991px) {
+  z-index: 0;
+
+  @media (max-width: 1700px) {
+    max-width: 700px;
+
+    height: auto;
+    top: 100px;
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
     width: 100%;
     height: auto;
-    position: relative;
-    top: 40px;
-    margin-bottom: 40px;
+    top: 0;
+    margin-top: 30px;
+    border-radius: 20px;
   }
 `;
 
@@ -221,20 +324,26 @@ const ServicesCard = styled.aside`
   height: 286px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(1.25px);
+  backdrop-filter: blur(2px);
   position: absolute;
   right: 40px;
   bottom: 48px;
   padding: 20px;
   background-color: rgba(160, 160, 160, 0.3);
-  @media (max-width: 991px) {
-    width: 90%;
-    right: 5%;
-    bottom: 20px;
+  z-index: 1;
+
+  @media (max-width: 1700px) {
+    width: 380px;
+    height: 260px;
+    right: 30px;
+    bottom: 40px;
   }
-  @media (max-width: 640px) {
-    height: auto;
-    padding: 15px;
+
+  @media (max-width: 768px) {
+    max-height: 220px;
+    width: 310px;
+    bottom: 10px;
+      backdrop-filter: blur(4px);
   }
 `;
 
@@ -244,8 +353,15 @@ const ServiceTitle = styled.h2`
   font-size: 24px;
   line-height: 32px;
   margin-bottom: 12px;
-  @media (max-width: 640px) {
+
+  @media (max-width: 1700px) {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  @media (max-width: 768px) {
     font-size: 20px;
+    line-height: 26px;
   }
 `;
 
@@ -255,9 +371,17 @@ const ServiceDescription = styled.p`
   font-size: 18px;
   line-height: 30px;
   margin-bottom: 20px;
-  @media (max-width: 640px) {
+
+  @media (max-width: 1700px) {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 26px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 22px;
+    color: rgb(255, 255, 255);
+
   }
 `;
 
@@ -274,13 +398,26 @@ const ViewServicesButton = styled.button`
   background-color: #007acc;
   border: none;
   cursor: pointer;
-  @media (max-width: 640px) {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 1700px) {
+    height: 45px;
+    padding: 5px 5px 5px 15px;
+    gap: 15px;
+  }
+
+  @media (max-width: 768px) {
     position: relative;
     right: auto;
     bottom: auto;
+    margin-top: 5px;
+    width: 60%;
+    justify-content: center;
+    height: 45px;
   }
 `;
 
@@ -289,6 +426,14 @@ const ViewServicesText = styled.span`
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 28px;
+
+  @media (max-width: 1700px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const ArrowIconSmallContainer = styled.div`
@@ -300,6 +445,12 @@ const ArrowIconSmallContainer = styled.div`
   align-items: center;
   border-radius: 50%;
   background-color: #fff;
+
+  @media (max-width: 1700px) {
+    width: 18px;
+    height: 18px;
+    padding: 8px;
+  }
 `;
 
 export default StudyAbroadHero;

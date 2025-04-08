@@ -23,7 +23,7 @@ import {
   Menu as MenuIcon,
   Flag,
 } from "@mui/icons-material";
-import logo from "/academicV.png";
+import logo from "/academicV.svg";
 import { keyframes } from "@emotion/react";
 import BookCounselling from "./BookCounselling";
 
@@ -46,7 +46,7 @@ const HeaderNav = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const [destinationAnchor, setDestinationAnchor] = useState(null);
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
   const [hoveredCountry, setHoveredCountry] = useState("");
@@ -67,12 +67,12 @@ const HeaderNav = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "About Us", path: "/aboutus" },
+    { name: "About", path: "/aboutus" },
     {
       name: "Destination",
       subItems: [
-        { name: "UK", path: "/uk" },
         { name: "USA", path: "/usa" },
+        { name: "UK", path: "/uk" },
         { name: "Malaysia", path: "/malaysia" },
         { name: "Romania", path: "/romania" },
         { name: "Malta", path: "/malta" },
@@ -102,13 +102,13 @@ const HeaderNav = () => {
         right: 0,
         overflow: "hidden",
         background: "linear-gradient(to right,rgb(255, 255, 255),rgb(202, 217, 251))",
-        backdropFilter: "blur(10px)",
+        backdropFilter: "blur(5px)",
         zIndex: theme.zIndex.appBar,
-        borderBottom: "1px solid rgba(0, 122, 204, 0.1)",
+        borderBottom: "3px solid rgba(230, 55, 2, 0.56)",
         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.05)",
       }}
     >
-      <Container maxWidth={false} sx={{ px: { xs: 2, md: 6 }, height: "100%" }}>
+      <Container maxWidth={false} sx={{ px: { xs: 2, md: 3 }, height: "100%" }}>
         <Toolbar
           disableGutters
           sx={{ height: "100%", justifyContent: "space-between" }}
@@ -137,8 +137,8 @@ const HeaderNav = () => {
               src={logo}
               alt="Academic Ventures Logo"
               style={{
-                width: 75,
-                height: 70,
+                width: 90,
+                height: 72,
                 marginRight: 10,
                 transition: "transform 0.3s ease",
               }}
@@ -148,9 +148,8 @@ const HeaderNav = () => {
               sx={{
                 color: theme.palette.primary.main,
                 fontWeight: 700,
-                fontSize: { xs: "1.3rem", md: "1.9rem" },
+                fontSize: { xs: "1.2rem", md: "1.5rem" },
                 fontFamily: "'Inter', sans-serif",
-                letterSpacing: "0.5px",
                 transition: "color 0.3s ease",
               }}
             >
@@ -163,7 +162,7 @@ const HeaderNav = () => {
             <Stack
               direction="row"
               spacing={1}
-              alignItems="center"
+              alignItems="flex-start"
               sx={{ height: "100%" }}
             >
               {navItems.map((item) => (
@@ -172,7 +171,7 @@ const HeaderNav = () => {
                   sx={{
                     height: "100%",
                     display: "flex",
-                    alignItems: "center",
+                    alignItems: "start",
                     position: "relative",
                   }}
                 >
@@ -202,7 +201,7 @@ const HeaderNav = () => {
                           fontSize: "1rem",
                           fontWeight: 500,
                           height: "100%",
-                          px: 2,
+                          px: 1,
                           position: "relative",
                           "&:hover": {
                             color: theme.palette.primary.main,
@@ -582,27 +581,29 @@ const HeaderNav = () => {
 
           {/* CTA Button */}
           <Button
-            variant="contained"
-            color="primary"
-            startIcon={<Phone sx={{ fontSize: 18 }} />}
-            onClick={() => setIsModalOpen(true)}
-            sx={{
-              ml: { xs: 1, md: 3 },
-              borderRadius: 28,
-              textTransform: "none",
-              px: { xs: 2, md: 3 },
-              py: 1,
-              fontWeight: 600,
-              boxShadow: "0 4px 12px rgba(0, 122, 204, 0.3)",
-              "&:hover": {
-                boxShadow: "0 6px 16px rgba(0, 122, 204, 0.4)",
-                transform: "translateY(-2px)",
-              },
-              transition: "all 0.3s ease",
-            }}
-          >
-            Book Free Counseling
-          </Button>
+  variant="contained"
+  color="primary"
+  startIcon={<Phone sx={{ fontSize: 18 }} />}
+  onClick={() => setIsModalOpen(true)}
+  sx={{
+    ml: { xs: 1, md: 3 },
+    borderRadius: 28,
+    textTransform: "none",
+    px: { xs: 2, md: 3 },
+    py: 1,
+    fontWeight: 600,
+    boxShadow: "0 4px 12px rgba(0, 122, 204, 0.3)",
+    "&:hover": {
+      boxShadow: "0 6px 16px rgba(0, 122, 204, 0.4)",
+      transform: "translateY(-2px)",
+    },
+    transition: "all 0.3s ease",
+    display: { xs: "none", xl: "flex" },
+  }}
+>
+  Book Free Counseling
+</Button>
+
           <BookCounselling
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}

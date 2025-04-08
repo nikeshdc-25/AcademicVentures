@@ -51,8 +51,9 @@ const TestPreparationPage = () => {
   const [openSyllabus, setOpenSyllabus] = useState(false);
   const [currentTest, setCurrentTest] = useState("SAT");
   const [openPattern, setOpenPattern] = useState(false);
+  const [openIframe, setOpenIframe] = useState(false);
 
-useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const testData = {
@@ -850,7 +851,7 @@ useEffect(() => {
         sx={{
           mb: 4,
           "& .MuiTab-root": {
-            fontSize: { xs: "0.875rem", sm: "1rem" },
+            fontSize: { xs: "0.7rem", sm: "1rem" },
             py: 1.5,
             minHeight: "auto",
           },
@@ -859,8 +860,8 @@ useEffect(() => {
         <TabList
           variant="plain"
           sx={{
-            "--List-padding": "0px",
-            "--List-radius": "0px",
+            "--List-padding": "10px",
+            "--List-radius": "10px",
             "--ListItem-minHeight": "48px",
             "& .MuiTab-root": {
               fontWeight: "md",
@@ -880,22 +881,22 @@ useEffect(() => {
           }}
         >
           <Tab value="SAT" indicatorInset>
-            <SATIcon sx={{ mr: 1 }} /> SAT
+            <SATIcon /> SAT
           </Tab>
           <Tab value="IELTS" indicatorInset>
-            <IELTSIcon sx={{ mr: 1 }} /> IELTS
+            <IELTSIcon /> IELTS
           </Tab>
           <Tab value="PTE" indicatorInset>
-            <PTEIcon sx={{ mr: 1 }} /> PTE
+            <PTEIcon /> PTE
           </Tab>
           <Tab value="TOEFL" indicatorInset>
-            <TOEFLICon sx={{ mr: 1 }} /> TOEFL
+            <TOEFLICon /> TOEFL
           </Tab>
           <Tab value="GRE" indicatorInset>
-            <GREIcon sx={{ mr: 1 }} /> GRE
+            <GREIcon /> GRE
           </Tab>
           <Tab value="GMAT" indicatorInset>
-            <GMATIcon sx={{ mr: 1 }} /> GMAT
+            <GMATIcon /> GMAT
           </Tab>
         </TabList>
       </Tabs>
@@ -1204,9 +1205,7 @@ useEffect(() => {
           color={testData[currentTest].color}
           size="lg"
           startDecorator={<StartIcon />}
-          onClick={() =>
-            window.open("https://demo.osom.global/student/cDnhFR", "_blank")
-          }
+          onClick={() => setOpenIframe(true)}
           sx={{
             minWidth: 260,
             boxShadow: `0 4px 16px ${
@@ -1222,6 +1221,23 @@ useEffect(() => {
           Start {currentTest} Preparation
         </Button>
       </Box>
+
+      <Modal open={openIframe} onClose={() => setOpenIframe(false)}>
+        <ModalDialog size="lg" sx={{ width: "70vw", height: "100vh", p: 0 }}>
+          <ModalClose />
+          <iframe
+            src="https://demo.osom.global/student/cDnhFR"
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+              borderRadius: "8px",
+            }}
+            title={`${currentTest} Preparation`}
+            allow="fullscreen"
+          />
+        </ModalDialog>
+      </Modal>
 
       {/* Test Comparison (mobile only) */}
       <Box sx={{ display: { xs: "block", md: "none" }, mb: 4 }}>

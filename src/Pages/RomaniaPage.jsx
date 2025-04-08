@@ -31,7 +31,7 @@ import BucharestImage from "/images/cities/bucharest.jpg";
 import ClujImage from "/images/cities/cluj.jpg";
 import TimisoaraImage from "/images/cities/timisoara.jpg";
 import BucharestUniImage from "/images/Universities/bucharest-uni.jpg";
-import BabesBolyaiImage from "/images/Universities/babes-bolyai.jpg";
+import RomanianImage from "/images/Universities/romanian.jpg";
 import BookCounselling from "../components/BookCounselling";
 
 const RomaniaPage = () => {
@@ -78,7 +78,7 @@ const RomaniaPage = () => {
       livingCost: "NPR 45k-75k/month",
     },
     {
-      name: "Cluj-Napoca",
+      name: "Babeș-Bolyai",
       image: ClujImage,
       highlights: [
         "Babes-Bolyai University",
@@ -113,13 +113,13 @@ const RomaniaPage = () => {
       },
     },
     {
-      name: "Babeș-Bolyai University",
-      image: BabesBolyaiImage,
+      name: "American Romanian University",
+      image: RomanianImage,
       stats: {
-        ranking: "Top in Romania",
-        acceptance: "60%",
-        popular: "Medicine, Engineering",
-        fees: "NPR 450k-800k/year",
+        ranking: "Among Top Private Universities in Romania",
+        acceptance: "Moderately Selective (Approx. 60%)",
+        popular: "Business, Law, Computer Science",
+        fees: "NPR 500k - 900k/year",
       },
     },
   ];
@@ -329,7 +329,7 @@ const RomaniaPage = () => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
-                  border: "1px solid rgb(62, 185, 0)",
+                  borderRight: "5px solid rgb(62, 185, 0)",
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: theme.shadows[6],
@@ -526,7 +526,8 @@ const RomaniaPage = () => {
           py: 8,
           mb: 8,
           textAlign: "center",
-          backgroundImage: "linear-gradient(135deg,rgb(0, 255, 17),rgb(255, 4, 4))",
+          backgroundImage:
+            "linear-gradient(135deg,rgb(0, 255, 17),rgb(255, 4, 4))",
         }}
       >
         <Container maxWidth="md">

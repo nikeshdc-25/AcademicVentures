@@ -165,10 +165,13 @@ const ServicesSection = () => {
             Discover the transformative opportunities that await you with
             Academic Ventures.
             <br />
+            <FooterExtra>
             Our dedicated guidance empowers your dreams of studying abroad,
             offering tailored
             <br />
             support that leads you confidently into your future.
+            </FooterExtra>
+           
           </FooterText>
         </SectionFooter>
       </ContentContainer>
@@ -178,15 +181,15 @@ const ServicesSection = () => {
 
 const SectionWrapper = styled.section`
   position: relative;
-  padding-left: 5%;
+  padding-left: 4%;
   width: 90%;
   display: flex;
   margin-bottom: 3rem;
   @media (max-width: 991px) {
-    padding-left: 5%;
+    padding-left: 4%;
     padding-right: 5%;
     height: auto;
-    min-height: 500px;
+    min-height: 300px;
   }
 `;
 
@@ -326,7 +329,6 @@ const CarouselWrapper = styled.div`
   position: relative;
   margin: 2% 0;
 
-  /* Override default carousel styles */
   .carousel .control-dots {
     margin: 10px 0;
   }
@@ -344,7 +346,7 @@ const CarouselWrapper = styled.div`
 
   .carousel .slide {
     text-align: center;
-    padding: 0 10px;
+    padding: 0 5px;
   }
 
   .carousel .carousel-slider {
@@ -408,7 +410,7 @@ const SectionFooter = styled.footer`
   margin-top: auto;
 
   @media (max-width: 991px) {
-    margin-top: 4%;
+    margin-top: 8%;
   }
 `;
 
@@ -426,5 +428,19 @@ const FooterText = styled.p`
     font-size: 12px;
   }
 `;
+
+const FooterExtra = styled.p`
+  font-size: 14px;
+  color: #333333;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+ @media (max-width: 991px) {
+display: none;
+
+ }
+
+`
 
 export default ServicesSection;

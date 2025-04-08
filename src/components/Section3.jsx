@@ -42,46 +42,33 @@ function Section3() {
     { name: "Study Abroad", id: "study-abroad" },
     { name: "Pre-Departure Support", id: "pre-departure-support" },
     { name: "Career Support", id: "career-counselling" },
+    { name: "Test Preparation", id: "test-preparation" },
+    { name: "University Selection", id: "university-selection" },
   ];
-  
 
-  function nextSlide() {
-    if (isTransitioning) return;
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselContent.length);
+  };
 
-    setSlideDirection("next");
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((currentSlide + 1) % carouselContent.length);
-      setIsTransitioning(false);
-    }, 500);
-  }
-
-  function prevSlide() {
-    if (isTransitioning) return;
-
-    setSlideDirection("prev");
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide(
-        currentSlide === 0 ? carouselContent.length - 1 : currentSlide - 1
-      );
-      setIsTransitioning(false);
-    }, 500);
-  }
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + carouselContent.length) % carouselContent.length
+    );
+  };
 
   return (
     <SectionWrapper>
       <ContentContainer>
-      <ServiceCategoriesNav>
-  {serviceCategories.map((category, index) => (
-    <CategoryButton 
-      key={index}
-      onClick={() => navigate(`/services/${category.id}`)}
-    >
-      {category.name}
-    </CategoryButton>
-  ))}
-</ServiceCategoriesNav>
+        <ServiceCategoriesNav>
+          {serviceCategories.map((category, index) => (
+            <CategoryButton
+              key={index}
+              onClick={() => navigate(`/services/${category.id}`)}
+            >
+              {category.name}
+            </CategoryButton>
+          ))}
+        </ServiceCategoriesNav>
 
         <MainContentGrid>
           <BlueCard>
@@ -201,16 +188,37 @@ function Section3() {
 }
 
 // Styled Components
+// Update your TopRightImage styled component to include the animation
 const TopRightImage = styled.div`
   position: absolute;
   top: -20px;
   right: -20px;
   width: 18%;
   height: auto;
+  animation: float 1.5s ease-in-out infinite;
 
   img {
     width: 100%;
     height: auto;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
   }
 
   @media (max-width: 1024px) {
@@ -243,20 +251,38 @@ const ContentContainer = styled.div`
 
 const ServiceCategoriesNav = styled.nav`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   overflow-x: auto;
+  width: 100%;
+  position: relative;
+    -webkit-overflow-scrolling: touch;
 
-  @media (max-width: 640px) {
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+    /* Hide scrollbar for all browsers */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+
+  /* Show scrollbar only on small devices */
+  @media (max-width: 768px) {
+    scrollbar-width: thin; /* Firefox */
+    &::-webkit-scrollbar {
+      display: initial; /* Chrome, Safari, Opera */
+      height: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0,0,0,0.2);
+      border-radius: 3px;
+    }
   }
 `;
 
 const CategoryButton = styled.button`
   height: 50px;
-  padding: 11px 45px;
+  padding: 11px 25px;
   border-radius: 9999px;
   border: 1px solid #606060;
   font-family: Open Sans;
@@ -294,7 +320,7 @@ const BlueCard = styled.article`
   border-radius: 35px;
   padding: 2rem;
   position: relative;
-  height: 85%;
+  height: 86%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -315,7 +341,7 @@ const CarouselImageWrapper = styled.div`
   position: relative;
   width: 100%;
   max-width: 800px; /* Adjust as needed */
-  height: 500px; /* Set a fixed height */
+  height: 550px; /* Set a fixed height */
   overflow: hidden;
   border-radius: 25px;
 `;
@@ -413,6 +439,10 @@ const Heading = styled.h2`
   font-size: 33px;
   line-height: 35px;
   margin-bottom: 1rem;
+  @media (max-width: 768px) {
+    font-size: 25px;
+    line-height: 25px;
+  }
 `;
 
 const Description = styled.p`
@@ -420,6 +450,9 @@ const Description = styled.p`
   font-family: Open Sans;
   font-size: 18px;
   line-height: 30px;
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const CtaButton = styled.button`
@@ -431,6 +464,9 @@ const CtaButton = styled.button`
   justify-content: center;
   border: none;
   cursor: pointer;
+  @media (max-width: 768px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const CtaText = styled.span`

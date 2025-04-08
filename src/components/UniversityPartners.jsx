@@ -11,6 +11,10 @@ const LogoImage = styled.img`
   &:hover {
     transform: scale(1.2);
   }
+     @media (max-width: 991px) {
+  width: 200px;
+  }
+
 `;
 
 const UniversityLogo = ({ src, altText }) => {
@@ -19,19 +23,18 @@ const UniversityLogo = ({ src, altText }) => {
 
 const Container = styled.section`
   width: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 2%;
+  border-radius: 1.5%;
 `;
 
 const ContentWrapper = styled.div`
   width: 100%;
   max-width: 1920px;
-  padding: 48px 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,14 +50,14 @@ const Heading = styled.h2`
   border: 1px solid rgba(0, 122, 204, 1);
   border-radius: 60px;
   font-family: "Open Sans", sans-serif;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(8, 156, 255, 0.5);
 
   @media (max-width: 991px) {
-    font-size: 48px;
+    font-size: 45px;
   }
 
   @media (max-width: 640px) {
-    font-size: 36px;
+    font-size: 20px;
   }
 `;
 
@@ -62,7 +65,7 @@ const UniversitiesContainer = styled.div`
   width: 100%;
   overflow: hidden;
   border-top: 10px solid rgba(0, 122, 204, 1);
-  padding-top: 2rem;
+  padding-top: 1rem;
   border-radius: 10%;
 `;
 
@@ -74,7 +77,7 @@ const UniversitiesRows = styled.div`
 
 const UniversitiesRow = styled.div`
   display: flex;
-  animation: scrollLeftToRight 30s linear infinite;
+  animation: scrollLeftToRight 10s linear infinite;
   gap: 80px;
 `;
 

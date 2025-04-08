@@ -18,6 +18,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  Divider,
+  Chip,
 } from "@mui/material";
 import {
   ExpandMore,
@@ -25,6 +31,12 @@ import {
   Work,
   Flag,
   CheckCircle,
+  Close,
+  School,
+  Public,
+  Engineering,
+  Business,
+  Language,
 } from "@mui/icons-material";
 import USFlag from "/images/country/usa.png";
 import NYImage from "/images/cities/ny.jpg";
@@ -38,12 +50,14 @@ const USPage = () => {
   const theme = useTheme();
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const [showUniversities, setShowUniversities] = useState(false);
+
   // Exchange rate: 1 USD ≈ 133 NPR
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-useEffect(() => {
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -150,6 +164,329 @@ useEffect(() => {
       name: "Need-Based Financial Aid",
       amount: "Variable (up to full tuition)",
       eligibility: "Demonstrated financial need",
+    },
+  ];
+
+  const universityCategories = [
+    {
+      name: "Common Universities for Nepali Students",
+      icon: <School color="primary" />,
+      universities: [
+        {
+          name: "Southeast Missouri State University",
+          state: "Missouri",
+          url: "https://www.semo.edu",
+        },
+        {
+          name: "University of South Alabama",
+          state: "Alabama",
+          url: "https://www.southalabama.edu",
+        },
+        {
+          name: "Wichita State University",
+          state: "Kansas",
+          url: "https://www.wichita.edu",
+        },
+        {
+          name: "University of Central Missouri",
+          state: "Missouri",
+          url: "https://www.ucmo.edu",
+        },
+        {
+          name: "Troy University",
+          state: "Alabama",
+          url: "https://www.troy.edu",
+        },
+        {
+          name: "Northwest Missouri State University",
+          state: "Missouri",
+          url: "https://www.nwmissouri.edu",
+        },
+        {
+          name: "Lamar University",
+          state: "Texas",
+          url: "https://www.lamar.edu",
+        },
+        {
+          name: "University of Louisiana at Monroe",
+          state: "Louisiana",
+          url: "https://www.ulm.edu",
+        },
+        {
+          name: "Minnesota State University, Mankato",
+          state: "Minnesota",
+          url: "https://www.mnsu.edu",
+        },
+        {
+          name: "University of Nebraska at Kearney",
+          state: "Nebraska",
+          url: "https://www.unk.edu",
+        },
+        {
+          name: "University of Texas at Arlington (UTA)",
+          state: "Texas",
+          url: "https://www.uta.edu",
+        },
+        {
+          name: "Murray State University",
+          state: "Kentucky",
+          url: "https://www.murraystate.edu",
+        },
+        {
+          name: "Kent State University",
+          state: "Ohio",
+          url: "https://www.kent.edu",
+        },
+        {
+          name: "University of New Haven",
+          state: "Connecticut",
+          url: "https://www.newhaven.edu",
+        },
+        {
+          name: "Arkansas State University",
+          state: "Arkansas",
+          url: "https://www.astate.edu",
+        },
+        {
+          name: "University of Bridgeport",
+          state: "Connecticut",
+          url: "https://www.bridgeport.edu",
+        },
+        {
+          name: "Southwestern Oklahoma State University (SWOSU)",
+          state: "Oklahoma",
+          url: "https://www.swosu.edu",
+        },
+        {
+          name: "Western Illinois University",
+          state: "Illinois",
+          url: "https://www.wiu.edu",
+        },
+        {
+          name: "University of the Cumberlands",
+          state: "Kentucky",
+          url: "https://www.ucumberlands.edu",
+        },
+        {
+          name: "Trine University",
+          state: "Indiana",
+          url: "https://www.trine.edu",
+        },
+        {
+          name: "Emporia State University",
+          state: "Kansas",
+          url: "https://www.emporia.edu",
+        },
+        {
+          name: "Texas A&M University–Commerce",
+          state: "Texas",
+          url: "https://www.tamuc.edu",
+        },
+        {
+          name: "Indiana State University",
+          state: "Indiana",
+          url: "https://www.indstate.edu",
+        },
+        {
+          name: "Grand Valley State University",
+          state: "Michigan",
+          url: "https://www.gvsu.edu",
+        },
+        {
+          name: "University of Findlay",
+          state: "Ohio",
+          url: "https://www.findlay.edu",
+        },
+      ],
+    },
+    {
+      name: "Top-Ranked & Well-Known Universities",
+      icon: <Public color="primary" />,
+      universities: [
+        {
+          name: "Harvard University",
+          state: "Massachusetts",
+          url: "https://www.harvard.edu",
+        },
+        {
+          name: "Stanford University",
+          state: "California",
+          url: "https://www.stanford.edu",
+        },
+        {
+          name: "Massachusetts Institute of Technology (MIT)",
+          state: "Massachusetts",
+          url: "https://www.mit.edu",
+        },
+        {
+          name: "Yale University",
+          state: "Connecticut",
+          url: "https://www.yale.edu",
+        },
+        {
+          name: "Princeton University",
+          state: "New Jersey",
+          url: "https://www.princeton.edu",
+        },
+        {
+          name: "University of Chicago",
+          state: "Illinois",
+          url: "https://www.uchicago.edu",
+        },
+        {
+          name: "Columbia University",
+          state: "New York",
+          url: "https://www.columbia.edu",
+        },
+        {
+          name: "University of Pennsylvania (UPenn)",
+          state: "Pennsylvania",
+          url: "https://www.upenn.edu",
+        },
+        {
+          name: "California Institute of Technology (Caltech)",
+          state: "California",
+          url: "https://www.caltech.edu",
+        },
+        {
+          name: "Duke University",
+          state: "North Carolina",
+          url: "https://www.duke.edu",
+        },
+        {
+          name: "University of California, Berkeley (UC Berkeley)",
+          state: "California",
+          url: "https://www.berkeley.edu",
+        },
+        {
+          name: "University of Michigan, Ann Arbor",
+          state: "Michigan",
+          url: "https://www.umich.edu",
+        },
+        {
+          name: "University of California, Los Angeles (UCLA)",
+          state: "California",
+          url: "https://www.ucla.edu",
+        },
+        {
+          name: "University of North Carolina at Chapel Hill (UNC)",
+          state: "North Carolina",
+          url: "https://www.unc.edu",
+        },
+        {
+          name: "University of Florida",
+          state: "Florida",
+          url: "https://www.ufl.edu",
+        },
+        {
+          name: "University of Wisconsin–Madison",
+          state: "Wisconsin",
+          url: "https://www.wisc.edu",
+        },
+        {
+          name: "University of Texas at Austin",
+          state: "Texas",
+          url: "https://www.utexas.edu",
+        },
+        {
+          name: "Ohio State University",
+          state: "Ohio",
+          url: "https://www.osu.edu",
+        },
+        {
+          name: "Penn State University",
+          state: "Pennsylvania",
+          url: "https://www.psu.edu",
+        },
+        {
+          name: "Purdue University",
+          state: "Indiana",
+          url: "https://www.purdue.edu",
+        },
+      ],
+    },
+    {
+      name: "Best for Science & Engineering",
+      icon: <Engineering color="primary" />,
+      universities: [
+        {
+          name: "Georgia Institute of Technology (Georgia Tech)",
+          state: "Georgia",
+          url: "https://www.gatech.edu",
+        },
+        {
+          name: "Carnegie Mellon University",
+          state: "Pennsylvania",
+          url: "https://www.cmu.edu",
+        },
+        {
+          name: "University of Illinois Urbana-Champaign",
+          state: "Illinois",
+          url: "https://www.illinois.edu",
+        },
+      ],
+    },
+    {
+      name: "Best for Business Studies",
+      icon: <Business color="primary" />,
+      universities: [
+        {
+          name: "University of Pennsylvania – Wharton School",
+          state: "Pennsylvania",
+          url: "https://www.wharton.upenn.edu",
+        },
+        {
+          name: "University of Michigan – Ross School of Business",
+          state: "Michigan",
+          url: "https://michiganross.umich.edu",
+        },
+        {
+          name: "New York University – Stern School of Business",
+          state: "New York",
+          url: "https://www.stern.nyu.edu",
+        },
+        {
+          name: "UC Berkeley – Haas School of Business",
+          state: "California",
+          url: "https://haas.berkeley.edu",
+        },
+        {
+          name: "Indiana University Bloomington – Kelley School of Business",
+          state: "Indiana",
+          url: "https://kelley.iu.edu",
+        },
+      ],
+    },
+    {
+      name: "Known for International Student Support",
+      icon: <Language color="primary" />,
+      universities: [
+        {
+          name: "Arizona State University",
+          state: "Arizona",
+          url: "https://www.asu.edu",
+        },
+        {
+          name: "University of Southern California (USC)",
+          state: "California",
+          url: "https://www.usc.edu",
+        },
+        {
+          name: "Northeastern University",
+          state: "Massachusetts",
+          url: "https://www.northeastern.edu",
+        },
+        {
+          name: "University of Washington",
+          state: "Washington",
+          url: "https://www.washington.edu",
+        },
+        {
+          name: "Boston University",
+          state: "Massachusetts",
+          url: "https://www.bu.edu",
+        },
+      ],
     },
   ];
 
@@ -331,7 +668,7 @@ useEffect(() => {
                   display: "flex",
                   flexDirection: { xs: "column", md: "row" },
                   transition: "transform 0.3s",
-                  border: "1px solid rgb(0, 65, 185)",
+                  borderRight: "5px solid rgb(0, 65, 185)",
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: theme.shadows[6],
@@ -373,6 +710,30 @@ useEffect(() => {
             </Grid>
           ))}
         </Grid>
+
+        <Box sx={{ textAlign: "center", mt: 6 }}>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => setShowUniversities(true)}
+            sx={{
+              px: 6,
+              py: 2,
+              borderRadius: "50px",
+              fontSize: "1.1rem",
+              fontWeight: "bold",
+              borderWidth: "2px",
+              "&:hover": {
+                borderWidth: "2px",
+                transform: "translateY(-3px)",
+                boxShadow: theme.shadows[4],
+              },
+              transition: "all 0.3s ease",
+            }}
+          >
+            View All Recommended Universities
+          </Button>
+        </Box>
       </Container>
 
       {/* Detailed Information */}
@@ -552,7 +913,6 @@ useEffect(() => {
             color="secondary"
             size="large"
             onClick={() => setIsModalOpen(true)}
-
             sx={{
               px: 8,
               py: 2,
@@ -575,6 +935,83 @@ useEffect(() => {
           />
         </Container>
       </Box>
+
+      {/* Universities Dialog */}
+      <Dialog
+        open={showUniversities}
+        onClose={() => setShowUniversities(false)}
+        maxWidth="md"
+        fullWidth
+        scroll="paper"
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold">
+            Recommended US Universities
+          </Typography>
+          <IconButton onClick={() => setShowUniversities(false)}>
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <Divider />
+        <DialogContent>
+          {universityCategories.map((category, index) => (
+            <Box key={index} sx={{ mb: 6 }}>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 4, mt: 4 }}>
+                {category.icon}
+                <Typography variant="h5" fontWeight="bold" sx={{ ml: 1 }}>
+                  {category.name}
+                </Typography>
+              </Box>
+              <Grid container spacing={2}>
+                {category.universities.map((uni, idx) => (
+                  <Grid item xs={12} sm={6} key={idx}>
+                    <Paper
+                      elevation={2}
+                      sx={{
+                        p: 1,
+                        borderRadius: 2,
+                        height: "100%",
+                        transition: "all 0.1s",
+                        "&:hover": {
+                          transform: "translateY(-3px)",
+                          borderLeft: "5px solid red",
+                          boxShadow: theme.shadows[4],
+                        },
+                      }}
+                    >
+                      <Typography variant="h6" fontWeight="medium">
+                        {uni.name}
+                      </Typography>
+                      <Chip
+                        label={uni.state}
+                        size="small"
+                        sx={{ mt: 0.5, mb: 1 }}
+                      />
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        href={uni.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        fullWidth
+                      >
+                        Visit Official Website
+                      </Button>
+                    </Paper>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          ))}
+        </DialogContent>
+        
+      </Dialog>
     </Box>
   );
 };
