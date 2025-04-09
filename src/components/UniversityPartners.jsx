@@ -1,141 +1,298 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useRef, useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
 
-// Logo component defined within the same file
-const LogoImage = styled.img`
-  width: 150px;
-  height: 150px;
-  flex-shrink: 0;
-  object-fit: contain;
-  transition: 1500ms;
-  &:hover {
-    transform: scale(1.2);
-  }
-     @media (max-width: 991px) {
-  width: 200px;
-  }
-
+// Floating animation with modern cubic-bezier
+const float = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 `;
 
-const UniversityLogo = ({ src, altText }) => {
-  return <LogoImage src={src} alt={altText} />;
-};
+// Modern gradient animation
+const gradientFlow = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
 
+// Smooth scroll animation
+const smoothScroll = (direction) => keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(${direction === 'left' ? '-' : ''}50%); }
+`;
+
+// Modern logo with sleek hover effect
+const LogoImage = styled.img`
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: grayscale(20%) brightness(0.95);
+  opacity: 0.9;
+  cursor: pointer;
+  position: relative;
+  
+  &:hover {
+    transform: scale(1.15);
+    filter: grayscale(0%) brightness(1.05);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+  }
+`;
+
+// Modern container with subtle gradient
 const Container = styled.section`
   width: 100%;
-  margin-bottom: 1rem;
+  padding: 4rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 1.5%;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  position: relative;
+  overflow: hidden;
 `;
 
+// Content wrapper with max-width
 const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 1920px;
-  padding: 40px 20px;
+  max-width: 1440px;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 2;
 `;
 
+// Modern heading with animated underline
 const Heading = styled.h2`
-  color: #333;
-  font-size: 50px;
-  font-weight: 600;
+  color: #1e293b;
+  font-size: 2.5rem;
+  font-weight: 700;
   text-align: center;
-  padding: 14px 80px 14px 80px;
-  margin-bottom: 40px;
-  border: 1px solid rgba(0, 122, 204, 1);
-  border-radius: 60px;
-  font-family: "Open Sans", sans-serif;
-  box-shadow: 0 10px 30px rgba(8, 156, 255, 0.5);
-
-  @media (max-width: 991px) {
-    font-size: 45px;
+  margin-bottom: 3rem;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  padding-bottom: 1rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    background-size: 200% 200%;
+    animation: ${gradientFlow} 4s ease infinite;
   }
 
-  @media (max-width: 640px) {
-    font-size: 20px;
+  @media (max-width: 768px) {
+    font-size: 2rem;
   }
 `;
 
+// Universities container with fade effect
 const UniversitiesContainer = styled.div`
   width: 100%;
   overflow: hidden;
-  border-top: 10px solid rgba(0, 122, 204, 1);
-  padding-top: 1rem;
-  border-radius: 10%;
-`;
+  position: relative;
+  padding: 1rem 0;
+  
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, #f8fafc, transparent);
+  }
+  
+  &::after {
+    right: 0;
+    background: linear-gradient(90deg, transparent, #f8fafc);
+  }
 
-const UniversitiesRows = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-`;
-
-const UniversitiesRow = styled.div`
-  display: flex;
-  animation: scrollLeftToRight 10s linear infinite;
-  gap: 80px;
-`;
-
-const GlobalStyles = styled.div`
-  @keyframes scrollLeftToRight {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
+  @media (max-width: 768px) {
+    &::before, &::after {
+      width: 50px;
     }
   }
 `;
 
+// Universities rows container
+const UniversitiesRows = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+// Single row with smooth scrolling
+const UniversitiesRow = styled.div`
+  display: flex;
+  gap: 3rem;
+  animation: ${props => smoothScroll(props.direction)} ${props => props.duration || '30s'} linear infinite;
+  will-change: transform;
+  padding: 1rem 0;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
+`;
+
+// Floating highlight circle (appears on hover)
+const HighlightCircle = styled.div`
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: -1;
+
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 120px;
+  }
+`;
+
+// Tooltip for university names
+const Tooltip = styled.div`
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e293b;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #1e293b;
+  }
+`;
+
+// Global styles with font import
+const GlobalStyles = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+`;
+
 function UniversityPartners() {
-  const firstRowUniversities = [
-    { id: 1, src: "/images/UniversityLogo/uni1.jpg", alt: "Harvard University" },
-    { id: 2, src: "/images/UniversityLogo/uni2.jpg", alt: "Stanford University" },
-    { id: 3, src: "/images/UniversityLogo/uni3.jpg", alt: "MIT" },
-    { id: 4, src: "/images/UniversityLogo/uni4.jpg", alt: "MIT" },
-    { id: 5, src: "/images/UniversityLogo/uni5.jpg", alt: "MIT" },
-    { id: 6, src: "/images/UniversityLogo/uni6.jpg", alt: "MIT" },
-    { id: 7, src: "/images/UniversityLogo/uni7.jpg", alt: "MIT" },
-    { id: 8, src: "/images/UniversityLogo/uni8.jpg", alt: "MIT" },
-    { id: 9, src: "/images/UniversityLogo/uni9.jpg", alt: "Harvard University" },
-    { id: 10, src: "/images/UniversityLogo/uni10.jpg", alt: "Harvard University" },
-    { id: 11, src: "/images/UniversityLogo/uni11.jpg", alt: "Harvard University" },
-    { id: 12, src: "/images/UniversityLogo/uni12.jpg", alt: "Harvard University" },
-    { id: 13, src: "/images/UniversityLogo/uni13.jpg", alt: "Harvard University" },
-    { id: 14, src: "/images/UniversityLogo/uni14.jpg", alt: "Harvard University" },
-    { id: 15, src: "/images/UniversityLogo/uni15.jpg", alt: "Harvard University" },
-    { id: 16, src: "/images/UniversityLogo/uni16.jpg", alt: "Harvard University" },
+  const [hoveredLogo, setHoveredLogo] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  // University data
+  const universities = [
+    { id: 1, src: "/images/UniversityLogo/uni1.jpg", alt: "Harvard University", name: "Harvard" },
+    { id: 2, src: "/images/UniversityLogo/uni2.jpg", alt: "Stanford University", name: "Stanford" },
+    { id: 3, src: "/images/UniversityLogo/uni3.jpg", alt: "Massachusetts Institute of Technology", name: "MIT" },
+    { id: 4, src: "/images/UniversityLogo/uni4.jpg", alt: "University of Cambridge", name: "Cambridge" },
+    { id: 5, src: "/images/UniversityLogo/uni5.jpg", alt: "University of Oxford", name: "Oxford" },
+    { id: 6, src: "/images/UniversityLogo/uni6.jpg", alt: "ETH Zurich", name: "ETH Zurich" },
+    { id: 7, src: "/images/UniversityLogo/uni7.jpg", alt: "Imperial College London", name: "Imperial" },
+    { id: 8, src: "/images/UniversityLogo/uni8.jpg", alt: "University of Chicago", name: "UChicago" },
+    { id: 9, src: "/images/UniversityLogo/uni9.jpg", alt: "Yale University", name: "Yale" },
+    { id: 10, src: "/images/UniversityLogo/uni10.jpg", alt: "Princeton University", name: "Princeton" },
+    { id: 11, src: "/images/UniversityLogo/uni11.jpg", alt: "Columbia University", name: "Columbia" },
+    { id: 12, src: "/images/UniversityLogo/uni12.jpg", alt: "University of Pennsylvania", name: "Penn" },
+    { id: 12, src: "/images/UniversityLogo/uni13.jpg", alt: "University of Pennsylvania", name: "Penn" },
+    { id: 12, src: "/images/UniversityLogo/uni14.jpg", alt: "University of Pennsylvania", name: "Penn" },
+    { id: 12, src: "/images/UniversityLogo/uni15.jpg", alt: "University of Pennsylvania", name: "Penn" },
+    { id: 12, src: "/images/UniversityLogo/uni16.jpg", alt: "University of Pennsylvania", name: "Penn" },
+
   ];
 
-  // Duplicate Universities to create continuous scrolling effect
-  const duplicatedUniversities = [...firstRowUniversities, ...firstRowUniversities];
+  const rows = [
+    { universities: [...universities, ...universities], direction: 'left', duration: '15s' },
+  ];
+
+  // Handle mouse move for highlight effect
+  const handleMouseMove = (e) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      });
+    }
+  };
 
   return (
     <>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
-        rel="stylesheet"
-      />
       <GlobalStyles />
-      <Container>
+      <Container 
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+      >
         <ContentWrapper>
-          <Heading>Our University Partners</Heading>
+          <Heading>Global University Partners</Heading>
+          
           <UniversitiesContainer>
             <UniversitiesRows>
-              <UniversitiesRow>
-                {duplicatedUniversities.map((logo) => (
-                  <UniversityLogo
-                    key={logo.id}
-                    src={logo.src}
-                    altText={logo.alt}
+              {rows.map((row, rowIndex) => (
+                <div key={rowIndex} style={{ position: 'relative' }}>
+                  <HighlightCircle 
+                    style={{
+                      left: `${mousePosition.x - 80}px`,
+                      top: `${mousePosition.y - 80}px`,
+                      opacity: hoveredLogo ? 1 : 0,
+                    }}
                   />
-                ))}
-              </UniversitiesRow>
+                  <UniversitiesRow 
+                    direction={row.direction} 
+                    duration={row.duration}
+                  >
+                    {row.universities.map((logo, logoIndex) => (
+                      <div 
+                        key={`${logo.id}-${rowIndex}-${logoIndex}`}
+                        style={{ position: 'relative' }}
+                        onMouseEnter={() => setHoveredLogo(logo.id)}
+                        onMouseLeave={() => setHoveredLogo(null)}
+                      >
+                        <LogoImage
+                          src={logo.src}
+                          alt={logo.alt}
+                        />
+                        <Tooltip style={{ opacity: hoveredLogo === logo.id ? 1 : 0 }}>
+                          {logo.name}
+                        </Tooltip>
+                      </div>
+                    ))}
+                  </UniversitiesRow>
+                </div>
+              ))}
             </UniversitiesRows>
           </UniversitiesContainer>
         </ContentWrapper>

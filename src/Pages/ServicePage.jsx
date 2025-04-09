@@ -49,7 +49,44 @@ import predepartureImage from '/services/predeparture.jpg';
 import careerImage from '/services/career.jpg';
 import financeImage from '/services/finance.jpg';
 
+// Animation variants
+const cardVariants = {
+  hover: {
+    y: -8,
+    scale: 1.02,
+    boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  },
+  initial: {
+    y: 0,
+    scale: 1,
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }
+};
 
+const imageHoverVariants = {
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  initial: {
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
 
 const services = [
   {
@@ -237,6 +274,7 @@ const services = [
   },
 ];
 
+
 const ServicePage = () => {
   const theme = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -252,9 +290,8 @@ const ServicePage = () => {
       setTimeout(() => {
         const element = document.getElementById(serviceId);
         if (element) {
-          const yOffset = -100; // Adjust this value as needed
-          const y =
-            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          const yOffset = -100;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: "smooth" });
         }
       }, 100);
@@ -272,17 +309,18 @@ const ServicePage = () => {
 
   return (
     <Box sx={{ bgcolor: "background.default", minHeight: "100vh" }}>
-      {/* Hero Section */}
+      {/* Enhanced Hero Section with Parallax Effect */}
       <Box
         sx={{
-          backgroundImage:
-            "linear-gradient(rgba(25, 118, 210, 0.85), rgba(25, 118, 210, 0.85)), url(https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&auto=format&fit=crop)",
+          backgroundImage: "linear-gradient(rgba(25, 118, 210, 0.85), rgba(25, 118, 210, 0.85)), url(https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&auto=format&fit=crop)",
           backgroundSize: "cover",
+          backgroundAttachment: isMobile ? "scroll" : "fixed",
           backgroundPosition: "center",
           color: "white",
           py: 12,
           textAlign: "center",
           position: "relative",
+          overflow: "hidden",
           "&::after": {
             content: '""',
             position: "absolute",
@@ -292,6 +330,15 @@ const ServicePage = () => {
             height: "4px",
             background: "linear-gradient(90deg, #ff5722, #ff9800)",
           },
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 40%)",
+          }
         }}
       >
         <Container maxWidth="lg">
@@ -303,6 +350,13 @@ const ServicePage = () => {
             sx={{
               textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
               mb: 2,
+              transform: "translateY(20px)",
+              opacity: 0,
+              animation: "fadeInUp 0.8s ease-out forwards",
+              "@keyframes fadeInUp": {
+                "0%": { opacity: 0, transform: "translateY(20px)" },
+                "100%": { opacity: 1, transform: "translateY(0)" }
+              }
             }}
           >
             Our Premier Education Services
@@ -314,22 +368,41 @@ const ServicePage = () => {
               maxWidth: "800px",
               mx: "auto",
               textShadow: "1px 1px 2px rgba(0,0,0,0.3)",
+              transform: "translateY(20px)",
+              opacity: 0,
+              animation: "fadeInUp 0.8s ease-out 0.2s forwards",
             }}
           >
-            Comprehensive support for your global education journey, from
-            initial planning to career success
+            Comprehensive support for your global education journey, from initial planning to career success
           </Typography>
         </Container>
       </Box>
 
-      {/* Services Grid */}
+      {/* Services Grid with Enhanced Animations */}
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Typography
           variant="h4"
           component="h2"
           fontWeight="bold"
           gutterBottom
-          sx={{ mb: 6, textAlign: "center", color: "primary.main" }}
+          sx={{ 
+            mb: 6, 
+            textAlign: "center", 
+            color: "primary.main",
+            position: "relative",
+            display: "inline-block",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              bottom: -8,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "80px",
+              height: "4px",
+              background: "linear-gradient(90deg, #007acc, #00b4ff)",
+              borderRadius: "2px"
+            }
+          }}
         >
           Explore Our Services
         </Typography>
@@ -344,27 +417,22 @@ const ServicePage = () => {
                     flexDirection: "column",
                     borderRadius: 3,
                     overflow: "hidden",
-                    boxShadow: hoveredCard === index ? 6 : 3,
-                    transform:
-                      hoveredCard === index
-                        ? "translateY(-8px) scale(1.02)"
-                        : "translateY(0) scale(1)",
-                    transition: "all 0.3s ease",
+                    boxShadow: 3,
+                    transform: "translateY(0) scale(1)",
+                    transition: "0.5s ease",
                     borderTop: "4px solid transparent",
                     "&:hover": {
-                      borderTop: "4px solid",
+                      borderTop: "5px solid",
                       borderTopColor: "primary.main",
+                      ...cardVariants.hover
                     },
+                    ...cardVariants.initial
                   }}
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onClick={() => {
                     setExpanded(service.id === expanded ? false : service.id);
-                    navigate(
-                      service.id === expanded
-                        ? "/services"
-                        : `/services/${service.id}`
-                    );
+                    navigate(service.id === expanded ? "/services" : `/services/${service.id}`);
                   }}
                 >
                   <CardMedia
@@ -373,20 +441,14 @@ const ServicePage = () => {
                     image={service.image}
                     alt={service.title}
                     sx={{
-                      transition: "transform 0.5s ease",
-                      "&:hover": {
-                        transform: "scale(1.05)",
-                      },
+                      transition: "transform 5s cubic-bezier(0.25, 0.8, 0.25, 1)",
+                      transform: "scale(1)",
+                      "&:hover": imageHoverVariants.hover,
+                      ...imageHoverVariants.initial
                     }}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        mb: 2,
-                      }}
-                    >
+                    <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                       <Avatar
                         sx={{
                           bgcolor: "primary.main",
@@ -394,6 +456,8 @@ const ServicePage = () => {
                           mr: 2,
                           width: 48,
                           height: 48,
+                          transition: "all 2s ease",
+                          transform: hoveredCard === index ? "rotate(360deg)" : "rotate(0)"
                         }}
                       >
                         {service.icon}
@@ -405,19 +469,9 @@ const ServicePage = () => {
                     <Typography variant="body2" sx={{ mb: 2 }}>
                       {service.description}
                     </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        mt: "auto",
-                      }}
-                    >
+                    <Box sx={{ display: "flex", alignItems: "center", mt: "auto" }}>
                       <Star color="warning" sx={{ mr: 1 }} />
-                      <Typography
-                        variant="caption"
-                        color="text.secondary"
-                        fontWeight="bold"
-                      >
+                      <Typography variant="caption" color="text.secondary" fontWeight="bold">
                         {service.stats}
                       </Typography>
                     </Box>
@@ -429,7 +483,7 @@ const ServicePage = () => {
         </Grid>
       </Container>
 
-      {/* Services Details Accordion */}
+      {/* Enhanced Services Details Accordion */}
       <Container maxWidth={false} sx={{ width: "95%", pb: 8 }}>
         <Box sx={{ maxWidth: "1400px", mx: "auto" }}>
           {services.map((service) => (
@@ -445,8 +499,11 @@ const ServicePage = () => {
                 "&:before": { display: "none" },
                 transition: "all 0.3s ease",
                 borderLeft: expanded === service.id ? "6px solid" : "3px solid",
-                borderLeftColor:
-                  expanded === service.id ? "primary.main" : "divider",
+                borderLeftColor: expanded === service.id ? "primary.main" : "divider",
+                transform: "perspective(1000px)",
+                "&:hover": {
+                  transform: expanded === service.id ? "perspective(1000px)" : "perspective(1000px) rotateX(1deg)"
+                }
               }}
               id={service.id}
             >
@@ -456,45 +513,32 @@ const ServicePage = () => {
                     sx={{
                       color: expanded === service.id ? "white" : "primary.main",
                       fontSize: "2rem",
-                      transition: "transform 0.3s ease",
-                      transform:
-                        expanded === service.id
-                          ? "rotate(180deg)"
-                          : "rotate(0)",
+                      transition: "all 0.3s ease",
+                      transform: expanded === service.id ? "rotate(180deg)" : "rotate(0)",
                     }}
                   />
                 }
                 sx={{
-                  bgcolor:
-                    expanded === service.id
-                      ? "primary.main"
-                      : "background.paper",
+                  bgcolor: expanded === service.id ? "primary.main" : "background.paper",
                   color: expanded === service.id ? "white" : "text.primary",
                   minHeight: "80px !important",
                   "&:hover": {
-                    bgcolor:
-                      expanded === service.id ? "primary.dark" : "action.hover",
+                    bgcolor: expanded === service.id ? "primary.dark" : "action.hover",
                   },
                   transition: "all 0.3s ease",
                   px: 4,
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: "100%",
-                  }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
                   <Avatar
                     sx={{
-                      bgcolor:
-                        expanded === service.id ? "white" : "primary.main",
+                      bgcolor: expanded === service.id ? "white" : "primary.main",
                       color: expanded === service.id ? "primary.main" : "white",
                       mr: 3,
                       width: 48,
                       height: 48,
                       transition: "all 0.3s ease",
+                      transform: expanded === service.id ? "rotate(360deg)" : "rotate(0)"
                     }}
                   >
                     {service.icon}
@@ -506,8 +550,7 @@ const ServicePage = () => {
                     <Typography
                       variant="subtitle2"
                       sx={{
-                        color:
-                          expanded === service.id ? "white" : "text.secondary",
+                        color: expanded === service.id ? "white" : "text.secondary",
                       }}
                     >
                       {service.stats}
@@ -515,26 +558,25 @@ const ServicePage = () => {
                   </Box>
                 </Box>
               </AccordionSummary>
-              <AccordionDetails
-                sx={{
-                  bgcolor: "background.paper",
-                  p: 0,
-                }}
-              >
+              <AccordionDetails sx={{ bgcolor: "background.paper", p: 0 }}>
                 <Grid container>
                   <Grid item xs={12} md={6}>
                     <Box sx={{ p: 4 }}>
-                      <Typography
-                        variant="h6"
-                        gutterBottom
-                        fontWeight="bold"
-                        color="primary"
-                      >
+                      <Typography variant="h6" gutterBottom fontWeight="bold" color="primary">
                         Comprehensive Service Details:
                       </Typography>
                       <List dense>
                         {service.details.map((detail, i) => (
-                          <ListItem key={i} sx={{ py: 1 }}>
+                          <ListItem 
+                            key={i} 
+                            sx={{ 
+                              py: 1,
+                              transition: "all 0.3s ease",
+                              "&:hover": {
+                                transform: "translateX(5px)"
+                              }
+                            }}
+                          >
                             <ListItemIcon sx={{ minWidth: "40px" }}>
                               <CheckCircle color="primary" />
                             </ListItemIcon>
@@ -548,19 +590,13 @@ const ServicePage = () => {
 
                       <Divider sx={{ my: 3 }} />
 
-                      <Typography
-                        variant="h6"
-                        gutterBottom
-                        fontWeight="bold"
-                        color="primary"
-                      >
+                      <Typography variant="h6" gutterBottom fontWeight="bold" color="primary">
                         Key Benefits:
                       </Typography>
                       <Box
                         sx={{
                           display: "grid",
-                          gridTemplateColumns:
-                            "repeat(auto-fit, minmax(250px, 1fr))",
+                          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
                           gap: 2,
                         }}
                       >
@@ -577,12 +613,18 @@ const ServicePage = () => {
                               "&:hover": {
                                 transform: "translateY(-3px)",
                                 boxShadow: theme.shadows[4],
+                                background: "linear-gradient(to right, rgba(25, 118, 210, 0.05), rgba(25, 118, 210, 0.1))"
                               },
                             }}
                           >
                             <TrendingUp
                               color="primary"
-                              sx={{ mr: 1.5, fontSize: "1.5rem" }}
+                              sx={{ 
+                                mr: 1.5, 
+                                fontSize: "1.5rem",
+                                transition: "all 0.3s ease",
+                                transform: "rotate(0deg)"
+                              }}
                             />
                             <Typography variant="body1">{benefit}</Typography>
                           </Paper>
@@ -606,9 +648,22 @@ const ServicePage = () => {
                           left: 0,
                           right: 0,
                           bottom: 0,
-                          background:
-                            "linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3))",
+                          background: "linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3))",
                         },
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: "linear-gradient(135deg, rgba(25, 118, 210, 0.1) 0%, transparent 50%)",
+                          opacity: 0,
+                          transition: "opacity 0.3s ease",
+                        },
+                        "&:hover::after": {
+                          opacity: 1
+                        }
                       }}
                     />
                   </Grid>
@@ -619,19 +674,35 @@ const ServicePage = () => {
         </Box>
       </Container>
 
-      {/* CTA Section */}
+      {/* Enhanced CTA Section with Floating Animation */}
       <Box
         sx={{
           bgcolor: "primary.dark",
           color: "white",
           py: 8,
           mb: 8,
-          borderRadius: "2%",
+          borderRadius: "16px",
           textAlign: "center",
-          backgroundImage:
-            "linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(21, 101, 192, 0.9)), url(https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&auto=format&fit=crop)",
+          backgroundImage: "linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(21, 101, 192, 0.9)), url(https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&auto=format&fit=crop)",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          position: "relative",
+          overflow: "hidden",
+          animation: "floating 6s ease-in-out infinite",
+          "@keyframes floating": {
+            "0%": { transform: "translateY(0px)" },
+            "50%": { transform: "translateY(-10px)" },
+            "100%": { transform: "translateY(0px)" }
+          },
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 30%)",
+          }
         }}
       >
         <Container maxWidth="md">
@@ -640,10 +711,33 @@ const ServicePage = () => {
             component="h2"
             fontWeight="bold"
             gutterBottom
+            sx={{
+              textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+              position: "relative",
+              display: "inline-block",
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                bottom: -8,
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "120px",
+                height: "3px",
+                background: "linear-gradient(90deg, #ff5722, #ff9800)",
+                borderRadius: "2px"
+              }
+            }}
           >
             Begin Your Educational Journey Today
           </Typography>
-          <Typography variant="h6" component="p" sx={{ mb: 4 }}>
+          <Typography 
+            variant="h6" 
+            component="p" 
+            sx={{ 
+              mb: 4,
+              textShadow: "1px 1px 2px rgba(0,0,0,0.3)"
+            }}
+          >
             Our team of experts is ready to guide you every step of the way!
           </Typography>
           <Button
@@ -657,11 +751,27 @@ const ServicePage = () => {
               borderRadius: "50px",
               fontWeight: "bold",
               boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+              position: "relative",
+              overflow: "hidden",
               "&:hover": {
                 transform: "translateY(-3px)",
                 boxShadow: "0 12px 28px rgba(0,0,0,0.4)",
               },
               transition: "all 0.3s ease",
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                top: "-50%",
+                left: "-50%",
+                width: "200%",
+                height: "200%",
+                background: "linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent)",
+                transform: "rotate(45deg)",
+                transition: "all 0.5s ease",
+              },
+              "&:hover::after": {
+                left: "100%",
+              }
             }}
           >
             Get Started Now

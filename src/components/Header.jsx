@@ -138,7 +138,7 @@ const HeaderNav = () => {
               alt="Academic Ventures Logo"
               style={{
                 width: 90,
-                height: 72,
+                height: 65,
                 marginRight: 10,
                 transition: "transform 0.3s ease",
               }}

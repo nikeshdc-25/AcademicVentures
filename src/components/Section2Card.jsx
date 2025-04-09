@@ -36,7 +36,7 @@ const CardContainer = styled.article`
 
 const CardImage = styled.img`
   width: 100%;
-  height: ${(props) => props.height || "520px"};
+  height: ${(props) => props.height || "500px"};
   object-fit: cover;
   border-radius: 30px;
 `;

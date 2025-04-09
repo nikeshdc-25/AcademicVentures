@@ -18,6 +18,7 @@
     "@mui/joy": "^5.0.0-beta.52",
     "@mui/material": "^6.4.10",
     "bootstrap": "^5.3.3",
+    "framer-motion": "^12.6.3",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
@@ -29,7 +30,9 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.4.0",
     "react-toastify": "^11.0.5",
-    "styled-components": "^6.1.16"
+    "react-tsparticles": "^2.12.2",
+    "styled-components": "^6.1.16",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

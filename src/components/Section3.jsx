@@ -188,7 +188,6 @@ function Section3() {
 }
 
 // Styled Components
-// Update your TopRightImage styled component to include the animation
 const TopRightImage = styled.div`
   position: absolute;
   top: -20px;
@@ -284,24 +283,35 @@ const CategoryButton = styled.button`
   height: 50px;
   padding: 11px 25px;
   border-radius: 9999px;
-  border: 1px solid #606060;
-  font-family: Open Sans;
-  font-size: 18px;
+  border: 1px solid rgba(96, 96, 96, 0.2);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
   color: #333;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.8);
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  margin: 2px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
   &:hover {
-    background-color: hsla(8, 98.2%, 44.1%, 0.1);
+    background-color: rgba(0, 122, 204, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.1);
   }
 
-  &:focus {
-    outline: 2px solid #007acc;
-    outline-offset: 2px;
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 20px;
+    font-size: 0.9rem;
   }
 `;
+
 
 const MainContentGrid = styled.div`
   display: grid;
@@ -350,7 +360,8 @@ const CarouselSlider = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  /* The transition now includes a 200ms delay */
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.2s;
   display: flex; /* Ensures images align properly */
   flex-shrink: 0; /* Prevents shrinking */
 
@@ -362,6 +373,8 @@ const CarouselSlider = styled.div`
     transform: translateX(100%);
   }
 `;
+
+
 
 const StyledCarouselImage = styled.img`
   width: 100%;

@@ -5,6 +5,18 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function Section3Carousel({ onPrevClick, onNextClick }) {
   const [activeButton, setActiveButton] = useState(null);
+  const [slideClass, setSlideClass] = useState("");
+
+const handleNext = () => {
+  setSlideClass("next");
+  setTimeout(() => setSlideClass("reset"), 600); // Match your transition duration
+};
+
+const handlePrev = () => {
+  setSlideClass("prev");
+  setTimeout(() => setSlideClass("reset"), 600);
+};
+
 
   return (
     <NavigationContainer>
@@ -33,7 +45,7 @@ function Section3Carousel({ onPrevClick, onNextClick }) {
 
 const NavigationContainer = styled.div`
   display: flex;
-  gap: 1.25rem;
+  gap: 1rem;
 `;
 
 const ButtonBase = styled.button`
@@ -42,7 +54,7 @@ const ButtonBase = styled.button`
   height: 50px;
   justify-content: center;
   align-items: center;
-  border-radius: 9999px;
+  border-radius: 99px;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
   border: 1px solid #007acc;
